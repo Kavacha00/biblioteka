@@ -1,4 +1,4 @@
 package bp.biblioteka.factories;
 
-public class Comic extends Book{
+public class Customer extends User{
 }

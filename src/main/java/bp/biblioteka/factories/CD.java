@@ -1,7 +1,15 @@
 package bp.biblioteka.factories;
 
 public class CD extends Item{
-    private String genre;
-    private String artist;
-    private String title;
+
+    private String author;
+
+    public CD(String title, String author) {
+        super(title);
+        this.author = author;
+    }
+    @Override
+    public void displayDetails() {
+        System.out.println(getTitle() + author);
+    }
 }
