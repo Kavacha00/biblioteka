@@ -26,5 +26,4 @@ public class BibliotekaApplication {
         System.out.println(myBook1.describe());
     }
 
-
 }
