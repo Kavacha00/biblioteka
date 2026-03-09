@@ -1,7 +1,10 @@
 package bp.biblioteka.entity.user;
 
+import lombok.Getter;
+
 import java.util.UUID;
 
+@Getter
 public abstract class User {
     private UUID id;
     private String name;
