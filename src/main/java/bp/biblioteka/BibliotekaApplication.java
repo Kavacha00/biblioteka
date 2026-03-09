@@ -1,6 +1,7 @@
 package bp.biblioteka;
 
-import bp.biblioteka.factories.*;
+import bp.biblioteka.builder.item.BookBuilder;
+import bp.biblioteka.entity.item.Book;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,12 +13,18 @@ public class BibliotekaApplication {
     public static void main(String[] args) {
 //        SpringApplication.run(BibliotekaApplication.class, args);
 
-        CDCreator cd = new CDCreator();
-        BookCreator book = new BookCreator();
+        BookBuilder bookBuilder = new BookBuilder();
+        Book myBook = bookBuilder
+                .title("Wiedźmin: Ostatnie życzenie")
+                .author("Andrzej Sapkowski")
+                .build();
 
-        Item item1 = cd.createItem("asfdd", "sds");
+        Book myBook1 = bookBuilder
+                .build();
 
-        item1.displayDetails();
+        System.out.println(myBook.describe());
+        System.out.println(myBook1.describe());
     }
+
 
 }
