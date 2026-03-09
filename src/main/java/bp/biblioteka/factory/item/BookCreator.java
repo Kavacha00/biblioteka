@@ -1,4 +1,7 @@
-package bp.biblioteka.factories;
+package bp.biblioteka.factory.item;
+
+import bp.biblioteka.entity.item.Book;
+import bp.biblioteka.entity.item.Item;
 
 public class BookCreator extends ItemCreator {
     @Override
