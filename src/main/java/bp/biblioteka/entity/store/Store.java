@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Getter
 public abstract class Store implements Cloneable{
-    private UUID id;
+    protected UUID id;
     private String name;
     private String email;
     private String address;
