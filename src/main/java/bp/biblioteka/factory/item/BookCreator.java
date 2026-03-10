@@ -20,7 +20,7 @@ public final class BookCreator extends ItemCreator {
     }
 
     @Override
-    public Item createItem(String title, String author){
-        return new Book(title, author);
+    public Item createItem(String author, String title){
+        return new Book(author, title);
     }
 }

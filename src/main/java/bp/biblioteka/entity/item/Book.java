@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class Book extends Item implements Cloneable {
     public Book(String author, String title) {
-        super(title, author);
+        super(author, title);
     }
 
     @Override
@@ -20,6 +20,6 @@ public class Book extends Item implements Cloneable {
 
     @Override
     public String describe() {
-        return "Book: " + this.getTitle() + " | " + this.getAuthor();
+        return "Book: " + this.getAuthor() + " | " + this.getTitle();
     }
 }

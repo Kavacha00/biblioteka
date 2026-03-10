@@ -47,8 +47,8 @@ public class BibliotekaApplication {
 
         System.out.println("Czy factory1 i factory2 to ten sam obiekt? " + (factory1 == factory2));
 
-        Item book1 = factory1.createItem("Wiedźmin: Krew Elfów", "Andrzej Sapkowski");
-        Item book2 = factory1.createItem("Hobbit", "J.R.R. Tolkien");
+        Item book1 = factory1.createItem("Andrzej Sapkowski", "Wiedźmin");
+        Item book2 = factory1.createItem("J.R.R. Tolkien", "Hobbit");
 
         System.out.println(book1.describe());
         System.out.println(book2.describe());

@@ -7,7 +7,7 @@ public abstract class Item {
     private String title;
     private String author;
 
-    public Item(String title, String author) {
+    public Item(String author, String title) {
         this.id = UUID.randomUUID();
         this.title = title;
         this.author = author;

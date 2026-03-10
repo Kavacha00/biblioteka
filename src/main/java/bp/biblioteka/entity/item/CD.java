@@ -1,12 +1,12 @@
 package bp.biblioteka.entity.item;
 
 public class CD extends Item {
-    public CD(String title, String author) {
-        super(title, author);
+    public CD(String author, String title) {
+        super(author, title);
     }
 
     @Override
     public String describe() {
-        return "CD: " + this.getTitle() + " | " + this.getAuthor();
+        return "CD: " + this.getAuthor() + " | " + this.getTitle();
     }
 }
