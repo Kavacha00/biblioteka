@@ -2,6 +2,8 @@ package bp.biblioteka;
 
 import bp.biblioteka.builder.item.BookBuilder;
 import bp.biblioteka.entity.item.Book;
+import bp.biblioteka.entity.item.Item;
+import bp.biblioteka.factory.item.BookCreator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,6 +15,7 @@ public class BibliotekaApplication {
     public static void main(String[] args) {
 //        SpringApplication.run(BibliotekaApplication.class, args);
 
+        //builder
 //        BookBuilder bookBuilder = new BookBuilder();
 //        Book myBook = bookBuilder
 //                .title("Wiedźmin: Ostatnie życzenie")
@@ -25,17 +28,30 @@ public class BibliotekaApplication {
 //        System.out.println(myBook.describe());
 //        System.out.println(myBook1.describe());
 
-        BookBuilder builder = new BookBuilder();
+        //prototype
+//        BookBuilder builder = new BookBuilder();
+//
+//        Book originalBook = builder
+//                .author("Frank Herbert")
+//                .title("Diuna")
+//                .build();
+//
+//        Book clonedBook = originalBook.clone();
+//
+//        System.out.println("Oryginał: " + originalBook.describe() + " | ID: " + originalBook.getId());
+//        System.out.println("Klon: " + clonedBook.describe() + " | ID: " + clonedBook.getId());
 
-        Book originalBook = builder
-                .author("Frank Herbert")
-                .title("Diuna")
-                .build();
+        BookCreator factory1 = BookCreator.getInstance();
 
-        Book clonedBook = originalBook.clone();
+        BookCreator factory2 = BookCreator.getInstance();
 
-        System.out.println("Oryginał: " + originalBook.describe() + " | ID: " + originalBook.getId());
-        System.out.println("Klon: " + clonedBook.describe() + " | ID: " + clonedBook.getId());
+        System.out.println("Czy factory1 i factory2 to ten sam obiekt? " + (factory1 == factory2));
+
+        Item book1 = factory1.createItem("Wiedźmin: Krew Elfów", "Andrzej Sapkowski");
+        Item book2 = factory1.createItem("Hobbit", "J.R.R. Tolkien");
+
+        System.out.println(book1.describe());
+        System.out.println(book2.describe());
 
     }
 
