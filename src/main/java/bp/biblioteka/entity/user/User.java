@@ -20,6 +20,16 @@ public abstract class User {
         this.password = password;
     }
 
+    protected User(UUID id, String name, String email, String login, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.login = login;
+        this.password = password;
+    }
+
     public abstract String logIn();
     public abstract String logOut();
+
+    public abstract User clone();
 }
