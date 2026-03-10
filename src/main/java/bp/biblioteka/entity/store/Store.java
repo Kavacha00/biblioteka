@@ -2,10 +2,11 @@ package bp.biblioteka.entity.store;
 
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
-public abstract class Store {
+public abstract class Store implements Cloneable{
     private UUID id;
     private String name;
     private String email;
