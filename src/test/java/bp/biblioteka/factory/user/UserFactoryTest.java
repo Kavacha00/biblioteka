@@ -20,7 +20,7 @@ public class UserFactoryTest {
 
     @Test
     void shouldCreateEmployeeUsingEmployeeFactory() {
-        EmployeeCreator factory = new EmployeeCreator();
+        EmployeeCreator factory = EmployeeCreator.getInstance();
 
         var user = factory.createUser("John Doe",
                 "John@doe.com", "John's Login", "John's Password");
@@ -31,7 +31,7 @@ public class UserFactoryTest {
 
     @Test
     void shouldCreateEmployeeWithCorrectFields() {
-        EmployeeCreator factory = new EmployeeCreator();
+        EmployeeCreator factory = EmployeeCreator.getInstance();
 
         var user = factory.createUser("John Doe",
                 "John@doe.com", "John's Login", "John's Password");
@@ -53,5 +53,13 @@ public class UserFactoryTest {
         assertEquals("John@doe.com", user.getEmail());
         assertEquals("John's Login", user.getLogin());
         assertEquals("John's Password", user.getPassword());
+    }
+
+    @Test
+    void shouldReturnSameInstanceOfEmployeeCreator() {
+        EmployeeCreator factory1 = EmployeeCreator.getInstance();
+        EmployeeCreator factory2 = EmployeeCreator.getInstance();
+
+        assertEquals(factory1, factory2);
     }
 }
