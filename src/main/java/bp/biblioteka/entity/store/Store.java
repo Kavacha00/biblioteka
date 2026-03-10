@@ -21,6 +21,16 @@ public abstract class Store implements Cloneable{
         this.phoneNumber = phoneNumber;
     }
 
+    @Override
+    public Store clone() {
+        try {
+            return (Store) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+
     public abstract String processOrder();
+
 
 }
