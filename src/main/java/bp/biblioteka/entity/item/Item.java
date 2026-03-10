@@ -3,7 +3,7 @@ package bp.biblioteka.entity.item;
 import java.util.UUID;
 
 public abstract class Item {
-    private UUID id;
+    protected UUID id;
     private String title;
     private String author;
 
@@ -13,6 +13,9 @@ public abstract class Item {
         this.author = author;
     }
 
+    public UUID getId() {
+        return this.id;
+    }
     public String getTitle() {
         return this.title;
     }
