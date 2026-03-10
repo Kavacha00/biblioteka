@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 // Importujemy statyczne metody asercji z JUnit 5
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DesignPatternsTest {
+public class ItemEntityTests {
 
     //test singleton i factory method
     @Test
