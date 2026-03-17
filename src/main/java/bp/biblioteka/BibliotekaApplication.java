@@ -1,5 +1,7 @@
 package bp.biblioteka;
 
+import bp.biblioteka.adapter.BookTranslateAdapter;
+import bp.biblioteka.adapter.ItemTranslatorObjectAdapterImpl;
 import bp.biblioteka.builder.item.BookBuilder;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
@@ -41,18 +43,26 @@ public class BibliotekaApplication {
 //        System.out.println("Oryginał: " + originalBook.describe() + " | ID: " + originalBook.getId());
 //        System.out.println("Klon: " + clonedBook.describe() + " | ID: " + clonedBook.getId());
 
-        BookCreator factory1 = BookCreator.getInstance();
+//        BookCreator factory1 = BookCreator.getInstance();
+//
+//        BookCreator factory2 = BookCreator.getInstance();
+//
+//        System.out.println("Czy factory1 i factory2 to ten sam obiekt? " + (factory1 == factory2));
+//
+//        Item book1 = factory1.createItem("Andrzej Sapkowski", "Wiedźmin");
+//        Item book2 = factory1.createItem("J.R.R. Tolkien", "Hobbit");
+//
+//        System.out.println(book1.describe());
+//        System.out.println(book2.describe());
 
-        BookCreator factory2 = BookCreator.getInstance();
 
-        System.out.println("Czy factory1 i factory2 to ten sam obiekt? " + (factory1 == factory2));
+        Item book = new Book("Pan Autor", "Abababa");
+        System.out.println(book.describe());
 
-        Item book1 = factory1.createItem("Andrzej Sapkowski", "Wiedźmin");
-        Item book2 = factory1.createItem("J.R.R. Tolkien", "Hobbit");
+        BookTranslateAdapter translateAdapter = new ItemTranslatorObjectAdapterImpl(book);
 
-        System.out.println(book1.describe());
-        System.out.println(book2.describe());
-
+        System.out.println(translateAdapter.getPolishDescription());
+        System.out.println(translateAdapter.getGermanDescription());
     }
 
 }

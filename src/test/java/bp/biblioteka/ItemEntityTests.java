@@ -6,12 +6,10 @@ import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.factory.item.BookCreator;
 import org.junit.jupiter.api.Test;
 
-// Importujemy statyczne metody asercji z JUnit 5
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemEntityTests {
 
-    //test singleton i factory method
     @Test
     public void testBookCreatorSingletonAndFactory() {
         BookCreator factory1 = BookCreator.getInstance();
@@ -27,7 +25,6 @@ public class ItemEntityTests {
         assertEquals("Wiedźmin", book.getTitle(), "Tytuł powinien się zgadzać");
     }
 
-    //test builder
     @Test
     public void testBookBuilderAndReset() {
         BookBuilder builder = new BookBuilder();
@@ -45,7 +42,6 @@ public class ItemEntityTests {
         assertNull(emptyBook.getAuthor(), "Po wywołaniu build(), builder powinien się zresetować (autor null)");
     }
 
-    //test prototype
     @Test
     public void testBookPrototypeClone() {
         Book originalBook = new Book("J.R.R. Tolkien", "Hobbit");
