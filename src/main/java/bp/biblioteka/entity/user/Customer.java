@@ -13,16 +13,13 @@ public class Customer extends User {
 
     @Override
     public String logIn() {
+        this.setLoggedIn(true);
         return "Customer logged in";
     }
 
     @Override
     public String logOut() {
+        this.setLoggedIn(false);
         return "Customer logged out";
-    }
-
-    @Override
-    public User clone() {
-        return new Customer(getId(), getName(), getEmail(), getLogin(), getPassword());
     }
 }
