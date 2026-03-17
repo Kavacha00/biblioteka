@@ -36,3 +36,4 @@ public class ItemTranslatorObjectAdapterImpl implements BookTranslateAdapter {
         }
     }
 }
+//Koniec, Tydzień 3, wzorzec Adapter

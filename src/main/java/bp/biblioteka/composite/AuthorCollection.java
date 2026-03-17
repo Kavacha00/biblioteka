@@ -6,6 +6,8 @@ import bp.biblioteka.entity.item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+//Tydzień 3, Wzorzec Composite
+//Możliwość zgrupowania wszystkich dzieł autora
 public class AuthorCollection extends Item {
     private List<Item> items = new ArrayList<Item>();
 
@@ -33,3 +35,4 @@ public class AuthorCollection extends Item {
         return sb.toString();
     }
 }
+//Koniec, Tydzień 3, Wzorzec Composite

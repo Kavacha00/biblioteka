@@ -12,3 +12,4 @@ public class BestsellerDecorator extends ItemDecorator {
         return item.describe() + " | Bestseller";
     }
 }
+//Koniec, Tydzień 3, Wzorzec Decorator
