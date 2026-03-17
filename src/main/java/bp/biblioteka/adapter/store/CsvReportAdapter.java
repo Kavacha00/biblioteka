@@ -2,6 +2,9 @@ package bp.biblioteka.adapter.store;
 
 import java.util.List;
 
+//Tydzień 3, Wzorzec Adapter 1,
+// Adapter umożliwia dostosowanie interfejsu CsvReportGenerator
+// do wymaganego interfejsu ReportService używanego w systemie.
 public class CsvReportAdapter implements ReportService {
 
     private CsvReportGenerator csvReportGenerator;
@@ -31,3 +34,4 @@ public class CsvReportAdapter implements ReportService {
         csvReportGenerator.generateCsv(csvData.toString());
     }
 }
+//Koniec, Tydzień 3, Wzorzec Adapter 1
