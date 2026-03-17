@@ -3,6 +3,7 @@ package bp.biblioteka;
 import bp.biblioteka.adapter.BookTranslateAdapter;
 import bp.biblioteka.adapter.ItemTranslatorObjectAdapterImpl;
 import bp.biblioteka.builder.item.BookBuilder;
+import bp.biblioteka.composite.AuthorCollection;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.factory.item.BookCreator;
@@ -56,13 +57,30 @@ public class BibliotekaApplication {
 //        System.out.println(book2.describe());
 
 
-        Item book = new Book("Pan Autor", "Abababa");
-        System.out.println(book.describe());
+//        Item book = new Book("Pan Autor", "Abababa");
+//        System.out.println(book.describe());
+//
+//        BookTranslateAdapter translateAdapter = new ItemTranslatorObjectAdapterImpl(book);
+//
+//        System.out.println(translateAdapter.getPolishDescription());
+//        System.out.println(translateAdapter.getGermanDescription());
 
-        BookTranslateAdapter translateAdapter = new ItemTranslatorObjectAdapterImpl(book);
+        Item book1 = new Book("Andrzej Sapkowski", "Ostatnie Życzenie");
+        Item book2 = new Book("Andrzej Sapkowski", "Miecz Przeznaczenia");
+        Item book3 = new Book("Andrzej Sapkowski", "Krew Elfów");
 
-        System.out.println(translateAdapter.getPolishDescription());
-        System.out.println(translateAdapter.getGermanDescription());
+        Item book4 = new Book("Frank Herbert", "Diuna");
+
+        AuthorCollection sapkowskiCollection = new AuthorCollection("Andrzej Sapkowski");
+
+        sapkowskiCollection.addItem(book1);
+        sapkowskiCollection.addItem(book2);
+        sapkowskiCollection.addItem(book3);
+
+        sapkowskiCollection.addItem(book4);
+
+        System.out.println(sapkowskiCollection.describe());
+
     }
 
 }
