@@ -4,6 +4,7 @@ import bp.biblioteka.adapter.BookTranslateAdapter;
 import bp.biblioteka.adapter.ItemTranslatorObjectAdapterImpl;
 import bp.biblioteka.builder.item.BookBuilder;
 import bp.biblioteka.composite.AuthorCollection;
+import bp.biblioteka.decorator.BestsellerDecorator;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.factory.item.BookCreator;
@@ -65,21 +66,28 @@ public class BibliotekaApplication {
 //        System.out.println(translateAdapter.getPolishDescription());
 //        System.out.println(translateAdapter.getGermanDescription());
 
-        Item book1 = new Book("Andrzej Sapkowski", "Ostatnie Życzenie");
-        Item book2 = new Book("Andrzej Sapkowski", "Miecz Przeznaczenia");
-        Item book3 = new Book("Andrzej Sapkowski", "Krew Elfów");
+//        Item book1 = new Book("Andrzej Sapkowski", "Ostatnie Życzenie");
+//        Item book2 = new Book("Andrzej Sapkowski", "Miecz Przeznaczenia");
+//        Item book3 = new Book("Andrzej Sapkowski", "Krew Elfów");
+//
+//        Item book4 = new Book("Frank Herbert", "Diuna");
+//
+//        AuthorCollection sapkowskiCollection = new AuthorCollection("Andrzej Sapkowski");
+//
+//        sapkowskiCollection.addItem(book1);
+//        sapkowskiCollection.addItem(book2);
+//        sapkowskiCollection.addItem(book3);
+//
+//        sapkowskiCollection.addItem(book4);
+//
+//        System.out.println(sapkowskiCollection.describe());
 
-        Item book4 = new Book("Frank Herbert", "Diuna");
 
-        AuthorCollection sapkowskiCollection = new AuthorCollection("Andrzej Sapkowski");
+        Item normalBook = new Book("J.K. Rowling", "Harry Potter i Kamień Filozoficzny");
+        System.out.println(normalBook.describe());
 
-        sapkowskiCollection.addItem(book1);
-        sapkowskiCollection.addItem(book2);
-        sapkowskiCollection.addItem(book3);
-
-        sapkowskiCollection.addItem(book4);
-
-        System.out.println(sapkowskiCollection.describe());
+        Item hitBook = new BestsellerDecorator(normalBook);
+        System.out.println(hitBook.describe());
 
     }
 
