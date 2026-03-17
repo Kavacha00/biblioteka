@@ -26,7 +26,7 @@ public class AuthorCollection extends Item {
     @Override
     public String describe() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Autor: ").append(getAuthor()).append("\n");
+        sb.append("Autor: ").append(getAuthor()).append(" [").append(this.getFormat().format()).append("]\n");
         for(Item item : items){
             sb.append(item.getTitle()).append("\n");
         }
