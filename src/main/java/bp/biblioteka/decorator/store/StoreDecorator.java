@@ -2,6 +2,9 @@ package bp.biblioteka.decorator.store;
 
 import bp.biblioteka.entity.store.Store;
 
+//Tydzień 3, Wzorzec Decorator 1,
+// Wzorzec Decorator pozwala dynamicznie rozszerzać zachowanie obiektu
+// poprzez opakowanie go w obiekt dekoratora bez zmiany jego klasy bazowej.
 public abstract class StoreDecorator extends Store {
 
     protected Store decoratedStore;
@@ -16,3 +19,4 @@ public abstract class StoreDecorator extends Store {
         return decoratedStore.processOrder();
     }
 }
+//Koniec, Tydzień 3, Wzorzec Decorator 1
