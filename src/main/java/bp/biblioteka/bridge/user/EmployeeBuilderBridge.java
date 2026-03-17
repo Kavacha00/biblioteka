@@ -2,6 +2,9 @@ package bp.biblioteka.bridge.user;
 
 import bp.biblioteka.entity.user.Employee;
 
+//Tydzień 3, Wzorzec Bridge 2,
+// Wzorzec Bridge oddziela abstrakcję (EmployeeBuilder) od implementacji (DefaultEmployeeBuilder),
+// dzięki czemu można podmieniać implementacje buildera (np dodać wymagania biznesowe do pól).
 public class EmployeeBuilderBridge extends DefaultEmployeeBuilder{
     private final EmployeeBuilder impl;
 
@@ -37,3 +40,4 @@ public class EmployeeBuilderBridge extends DefaultEmployeeBuilder{
         impl.reset();
     }
 }
+//Koniec, Tydzień 3, Wzorzec Bridge 2

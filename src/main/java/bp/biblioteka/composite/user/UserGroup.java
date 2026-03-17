@@ -4,6 +4,9 @@ import bp.biblioteka.entity.user.User;
 
 import java.util.List;
 
+//Tydzień 3, Wzorzec Composite 2,
+// Wzorzec Composite pozwala traktować pojedyncze obiekty oraz ich grupy w jednolity sposób.
+// UserGroup agreguje wiele obiektów User i deleguje do nich operacje.
 public class UserGroup extends User {
     private final List<User> users;
     private final StringBuilder builder;
@@ -37,3 +40,4 @@ public class UserGroup extends User {
         return msg;
     }
 }
+//Koniec, Tydzień 3, Wzorzec Composite 2
