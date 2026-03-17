@@ -1,5 +1,7 @@
 package bp.biblioteka.entity.item;
 
+import bp.biblioteka.bridge.ItemFormat;
+
 import java.util.UUID;
 
 public abstract class Item {
@@ -7,10 +9,15 @@ public abstract class Item {
     private String title;
     private String author;
 
-    public Item(String author, String title) {
+
+
+    protected ItemFormat format;
+
+    public Item(String author, String title,  ItemFormat format) {
         this.id = UUID.randomUUID();
         this.title = title;
         this.author = author;
+        this.format = format;
     }
 
     public UUID getId() {
@@ -21,6 +28,8 @@ public abstract class Item {
     }
 
     public String getAuthor() { return this.author; }
+
+    public ItemFormat getFormat() { return this.format; }
 
     public abstract String describe();
 }

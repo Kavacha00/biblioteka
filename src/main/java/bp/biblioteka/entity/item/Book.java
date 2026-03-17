@@ -1,10 +1,13 @@
 package bp.biblioteka.entity.item;
 
+import bp.biblioteka.bridge.ItemFormat;
+
 import java.util.UUID;
 
 public class Book extends Item implements Cloneable {
-    public Book(String author, String title) {
-        super(author, title);
+    public Book(String author, String title, ItemFormat format) {
+
+        super(author, title,  format);
     }
 
     @Override
@@ -20,6 +23,7 @@ public class Book extends Item implements Cloneable {
 
     @Override
     public String describe() {
-        return "Book: " + this.getAuthor() + " | " + this.getTitle();
+        return "Book: " + this.getAuthor() + " | " + this.getTitle()
+                + " [" + this.getFormat().format()+ "]";
     }
 }

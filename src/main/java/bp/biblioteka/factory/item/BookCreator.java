@@ -1,5 +1,6 @@
 package bp.biblioteka.factory.item;
 
+import bp.biblioteka.bridge.ItemFormat;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
 
@@ -20,7 +21,7 @@ public final class BookCreator extends ItemCreator {
     }
 
     @Override
-    public Item createItem(String author, String title){
-        return new Book(author, title);
+    public Item createItem(String author, String title, ItemFormat format){
+        return new Book(author, title,  format);
     }
 }

@@ -2,6 +2,9 @@ package bp.biblioteka;
 
 import bp.biblioteka.adapter.BookTranslateAdapter;
 import bp.biblioteka.adapter.ItemTranslatorObjectAdapterImpl;
+import bp.biblioteka.bridge.DigitalFormat;
+import bp.biblioteka.bridge.ItemFormat;
+import bp.biblioteka.bridge.PhysicalFormat;
 import bp.biblioteka.builder.item.BookBuilder;
 import bp.biblioteka.composite.AuthorCollection;
 import bp.biblioteka.decorator.BestsellerDecorator;
@@ -83,12 +86,23 @@ public class BibliotekaApplication {
 //        System.out.println(sapkowskiCollection.describe());
 
 
-        Item normalBook = new Book("J.K. Rowling", "Harry Potter i Kamień Filozoficzny");
-        System.out.println(normalBook.describe());
+//        Item normalBook = new Book("J.K. Rowling", "Harry Potter i Kamień Filozoficzny");
+//        System.out.println(normalBook.describe());
+//
+//        Item hitBook = new BestsellerDecorator(normalBook);
+//        System.out.println(hitBook.describe());
 
-        Item hitBook = new BestsellerDecorator(normalBook);
-        System.out.println(hitBook.describe());
+        ItemFormat physical = new PhysicalFormat();
+        ItemFormat digital = new DigitalFormat();
 
+        Item paperBook = new Book("Andrzej Sapkowski", "Wiedźmin", physical);
+        Item eBook = new Book("J.R.R. Tolkien", "Hobbit", digital);
+
+        System.out.println(paperBook.describe());
+        System.out.println("Czy można pobrać? " + paperBook.getFormat().isDownloadable());
+
+        System.out.println("\n" + eBook.describe());
+        System.out.println("Czy można pobrać? " + eBook.getFormat().isDownloadable());
     }
 
 }

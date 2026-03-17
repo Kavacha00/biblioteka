@@ -1,5 +1,6 @@
 package bp.biblioteka.composite;
 
+import bp.biblioteka.bridge.CollectionFormat;
 import bp.biblioteka.entity.item.Item;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class AuthorCollection extends Item {
     private List<Item> items = new ArrayList<Item>();
 
     public AuthorCollection(String author) {
-        super(author, "Kolekcja autora");
+        super(author, "Kolekcja autora", new CollectionFormat());
     }
 
     public void addItem(Item item){
