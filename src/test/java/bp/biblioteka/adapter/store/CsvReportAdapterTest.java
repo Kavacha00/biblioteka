@@ -1,8 +1,5 @@
-package bp.biblioteka.adapter;
+package bp.biblioteka.adapter.store;
 
-import bp.biblioteka.adapter.store.CsvReportAdapter;
-import bp.biblioteka.adapter.store.CsvReportGenerator;
-import bp.biblioteka.adapter.store.Loan;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.user.Customer;
 import org.junit.jupiter.api.Test;
