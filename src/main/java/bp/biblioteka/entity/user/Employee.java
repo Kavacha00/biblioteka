@@ -13,17 +13,14 @@ public class Employee extends User {
 
     @Override
     public String logIn() {
-        return "User logged in";
+        this.setLoggedIn(true);
+        return "Employee logged in";
     }
 
     @Override
     public String logOut() {
-        return "User logged out";
-    }
-
-    @Override
-    public User clone() {
-        return new Employee(getId(), getName(), getEmail(), getLogin(), getPassword());
+        this.setLoggedIn(false);
+        return "Employee logged out";
     }
 
 }
