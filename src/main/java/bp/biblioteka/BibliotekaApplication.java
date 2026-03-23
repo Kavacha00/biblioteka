@@ -10,6 +10,7 @@ import bp.biblioteka.composite.AuthorCollection;
 import bp.biblioteka.decorator.BestsellerDecorator;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
+import bp.biblioteka.facade.ItemFacade;
 import bp.biblioteka.factory.item.BookCreator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -92,17 +93,30 @@ public class BibliotekaApplication {
 //        Item hitBook = new BestsellerDecorator(normalBook);
 //        System.out.println(hitBook.describe());
 
-        ItemFormat physical = new PhysicalFormat();
-        ItemFormat digital = new DigitalFormat();
+//        ItemFormat physical = new PhysicalFormat();
+//        ItemFormat digital = new DigitalFormat();
+//
+//        Item paperBook = new Book("Andrzej Sapkowski", "Wiedźmin", physical);
+//        Item eBook = new Book("J.R.R. Tolkien", "Hobbit", digital);
+//
+//        System.out.println(paperBook.describe());
+//        System.out.println("Czy można pobrać? " + paperBook.getFormat().isDownloadable());
+//
+//        System.out.println("\n" + eBook.describe());
+//        System.out.println("Czy można pobrać? " + eBook.getFormat().isDownloadable());
 
-        Item paperBook = new Book("Andrzej Sapkowski", "Wiedźmin", physical);
-        Item eBook = new Book("J.R.R. Tolkien", "Hobbit", digital);
 
-        System.out.println(paperBook.describe());
-        System.out.println("Czy można pobrać? " + paperBook.getFormat().isDownloadable());
+        ItemFacade itemFacade = new ItemFacade();
+        Item standardBook = itemFacade.createPhysicalBook("Janusz", "Jak uprawiać buraki");
+        Item hitBook = itemFacade.createBestsellerBook("Andrzej", "Piwo kontra wódka", false);
 
-        System.out.println("\n" + eBook.describe());
-        System.out.println("Czy można pobrać? " + eBook.getFormat().isDownloadable());
+        AuthorCollection collection = itemFacade.createAuthorCollection("Andrzej");
+        collection.addItem(hitBook);
+
+        System.out.println(standardBook.describe());
+        System.out.println(collection.describe());
+
+
     }
 
 }
