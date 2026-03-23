@@ -11,18 +11,6 @@ public class PhysicalStore extends Store  {
         super(name, email, address, phoneNumber);
     }
 
-//    @Override
-//    public PhysicalStore clone() {
-//        try {
-//            PhysicalStore physicalStore = (PhysicalStore) super.clone();
-//            physicalStore.id = UUID.randomUUID();
-//            return physicalStore;
-//        } catch (CloneNotSupportedException e) {
-//            throw new AssertionError();
-//        }
-//    }
-
-
     @Override
     public String processOrder() {
         return "Processing order in physical store";
