@@ -1,18 +1,12 @@
 package bp.biblioteka;
 
-import bp.biblioteka.adapter.BookTranslateAdapter;
-import bp.biblioteka.adapter.ItemTranslatorObjectAdapterImpl;
-import bp.biblioteka.bridge.DigitalFormat;
-import bp.biblioteka.bridge.ItemFormat;
-import bp.biblioteka.bridge.PhysicalFormat;
-import bp.biblioteka.builder.item.BookBuilder;
-import bp.biblioteka.composite.AuthorCollection;
-import bp.biblioteka.decorator.BestsellerDecorator;
+import bp.biblioteka.bridge.item.PhysicalFormat;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
-import bp.biblioteka.facade.ItemFacade;
-import bp.biblioteka.factory.item.BookCreator;
-import org.springframework.boot.SpringApplication;
+import bp.biblioteka.entity.user.Customer;
+import bp.biblioteka.entity.user.Employee;
+import bp.biblioteka.entity.user.User;
+import bp.biblioteka.proxy.item.SecuredItemProxy;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -106,16 +100,25 @@ public class BibliotekaApplication {
 //        System.out.println("Czy można pobrać? " + eBook.getFormat().isDownloadable());
 
 
-        ItemFacade itemFacade = new ItemFacade();
-        Item standardBook = itemFacade.createPhysicalBook("Janusz", "Jak uprawiać buraki");
-        Item hitBook = itemFacade.createBestsellerBook("Andrzej", "Piwo kontra wódka", false);
+//        ItemFacade itemFacade = new ItemFacade();
+//        Item standardBook = itemFacade.createPhysicalBook("Janusz", "Jak uprawiać buraki");
+//        Item hitBook = itemFacade.createBestsellerBook("Andrzej", "Piwo kontra wódka", false);
+//
+//        AuthorCollection collection = itemFacade.createAuthorCollection("Andrzej");
+//        collection.addItem(hitBook);
+//
+//        System.out.println(standardBook.describe());
+//        System.out.println(collection.describe());
 
-        AuthorCollection collection = itemFacade.createAuthorCollection("Andrzej");
-        collection.addItem(hitBook);
 
-        System.out.println(standardBook.describe());
-        System.out.println(collection.describe());
+        User customer = new Customer("A", "a", "a", "a");
+        User employee = new Employee("B", "b", "b", "b");
 
+        Item book = new Book("C", "C", new PhysicalFormat());
+        SecuredItemProxy securedBook = new SecuredItemProxy(book, employee);
+        System.out.println(securedBook.describe());
+
+        System.out.println(securedBook.getInternalDetails());
 
     }
 

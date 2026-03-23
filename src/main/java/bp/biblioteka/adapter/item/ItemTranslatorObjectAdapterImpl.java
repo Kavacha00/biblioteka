@@ -1,4 +1,4 @@
-package bp.biblioteka.adapter;
+package bp.biblioteka.adapter.item;
 
 import bp.biblioteka.entity.item.Item;
 

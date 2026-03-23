@@ -1,4 +1,4 @@
-package bp.biblioteka.decorator;
+package bp.biblioteka.decorator.Item;
 
 import bp.biblioteka.entity.item.Item;
 

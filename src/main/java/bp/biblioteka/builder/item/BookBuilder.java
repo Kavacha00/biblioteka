@@ -1,6 +1,6 @@
 package bp.biblioteka.builder.item;
 
-import bp.biblioteka.bridge.ItemFormat;
+import bp.biblioteka.bridge.item.ItemFormat;
 import bp.biblioteka.entity.item.Book;
 
 public class BookBuilder {
