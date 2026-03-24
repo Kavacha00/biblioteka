@@ -7,6 +7,7 @@ import bp.biblioteka.composite.item.AuthorCollection;
 import bp.biblioteka.decorator.Item.BestsellerDecorator;
 import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.factory.item.BookCreator;
+import bp.biblioteka.flyweight.item.FormatFactory;
 
 public class ItemFacade {
     private final BookCreator bookCreator;
@@ -20,11 +21,13 @@ public class ItemFacade {
     }
 
     public Item createPhysicalBook(String author, String title){
-        return bookCreator.createItem(author, title,  physicalFormat);
+        ItemFormat itemFormat = FormatFactory.getItemFormat("physical");
+        return bookCreator.createItem(author, title,  itemFormat);
     }
 
     public Item createDigitalBook(String author, String title){
-        return bookCreator.createItem(author, title,  digitalFormat);
+        ItemFormat itemFormat = FormatFactory.getItemFormat("digital");
+        return bookCreator.createItem(author, title,  itemFormat);
     }
 
     public Item createBestsellerBook(String author, String title, boolean isDigital){

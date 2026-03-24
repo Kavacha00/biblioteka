@@ -6,6 +6,7 @@ import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.entity.user.Customer;
 import bp.biblioteka.entity.user.Employee;
 import bp.biblioteka.entity.user.User;
+import bp.biblioteka.facade.ItemFacade;
 import bp.biblioteka.proxy.item.SecuredItemProxy;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -111,14 +112,21 @@ public class BibliotekaApplication {
 //        System.out.println(collection.describe());
 
 
-        User customer = new Customer("A", "a", "a", "a");
-        User employee = new Employee("B", "b", "b", "b");
+//        User customer = new Customer("A", "a", "a", "a");
+//        User employee = new Employee("B", "b", "b", "b");
+//
+//        Item book = new Book("C", "C", new PhysicalFormat());
+//        SecuredItemProxy securedBook = new SecuredItemProxy(book, employee);
+//        System.out.println(securedBook.describe());
+//
+//        System.out.println(securedBook.getInternalDetails());
 
-        Item book = new Book("C", "C", new PhysicalFormat());
-        SecuredItemProxy securedBook = new SecuredItemProxy(book, employee);
-        System.out.println(securedBook.describe());
 
-        System.out.println(securedBook.getInternalDetails());
+        ItemFacade facade = new ItemFacade();
+        Item book1 = facade.createPhysicalBook("A", "B");
+        Item book2 = facade.createPhysicalBook("C", "D");
+
+        System.out.println(book1.getFormat() == book2.getFormat());
 
     }
 
