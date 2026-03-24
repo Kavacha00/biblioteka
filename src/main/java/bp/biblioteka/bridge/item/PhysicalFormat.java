@@ -1,4 +1,4 @@
-package bp.biblioteka.bridge;
+package bp.biblioteka.bridge.item;
 
 public class PhysicalFormat implements ItemFormat {
     @Override

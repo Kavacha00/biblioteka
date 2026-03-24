@@ -1,17 +1,7 @@
 package bp.biblioteka;
 
-import bp.biblioteka.adapter.BookTranslateAdapter;
-import bp.biblioteka.adapter.ItemTranslatorObjectAdapterImpl;
-import bp.biblioteka.bridge.DigitalFormat;
-import bp.biblioteka.bridge.ItemFormat;
-import bp.biblioteka.bridge.PhysicalFormat;
-import bp.biblioteka.builder.item.BookBuilder;
-import bp.biblioteka.composite.AuthorCollection;
-import bp.biblioteka.decorator.BestsellerDecorator;
-import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
-import bp.biblioteka.factory.item.BookCreator;
-import org.springframework.boot.SpringApplication;
+import bp.biblioteka.facade.item.ItemFacade;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -92,17 +82,46 @@ public class BibliotekaApplication {
 //        Item hitBook = new BestsellerDecorator(normalBook);
 //        System.out.println(hitBook.describe());
 
-        ItemFormat physical = new PhysicalFormat();
-        ItemFormat digital = new DigitalFormat();
+//        ItemFormat physical = new PhysicalFormat();
+//        ItemFormat digital = new DigitalFormat();
+//
+//        Item paperBook = new Book("Andrzej Sapkowski", "Wiedźmin", physical);
+//        Item eBook = new Book("J.R.R. Tolkien", "Hobbit", digital);
+//
+//        System.out.println(paperBook.describe());
+//        System.out.println("Czy można pobrać? " + paperBook.getFormat().isDownloadable());
+//
+//        System.out.println("\n" + eBook.describe());
+//        System.out.println("Czy można pobrać? " + eBook.getFormat().isDownloadable());
 
-        Item paperBook = new Book("Andrzej Sapkowski", "Wiedźmin", physical);
-        Item eBook = new Book("J.R.R. Tolkien", "Hobbit", digital);
 
-        System.out.println(paperBook.describe());
-        System.out.println("Czy można pobrać? " + paperBook.getFormat().isDownloadable());
+//        ItemFacade itemFacade = new ItemFacade();
+//        Item standardBook = itemFacade.createPhysicalBook("Janusz", "Jak uprawiać buraki");
+//        Item hitBook = itemFacade.createBestsellerBook("Andrzej", "Piwo kontra wódka", false);
+//
+//        AuthorCollection collection = itemFacade.createAuthorCollection("Andrzej");
+//        collection.addItem(hitBook);
+//
+//        System.out.println(standardBook.describe());
+//        System.out.println(collection.describe());
 
-        System.out.println("\n" + eBook.describe());
-        System.out.println("Czy można pobrać? " + eBook.getFormat().isDownloadable());
+
+//        User customer = new Customer("A", "a", "a", "a");
+//        User employee = new Employee("B", "b", "b", "b");
+//
+//        Item book = new Book("C", "C", new PhysicalFormat());
+//        SecuredItemProxy securedBook = new SecuredItemProxy(book, employee);
+//        System.out.println(securedBook.describe());
+//
+//        System.out.println(securedBook.getInternalDetails());
+
+
+        ItemFacade facade = new ItemFacade();
+        Item book1 = facade.createPhysicalBook("A", "B");
+        Item book2 = facade.createPhysicalBook("C", "D");
+
+        System.out.println(book1.getFormat() == book2.getFormat());
+
     }
 
 }

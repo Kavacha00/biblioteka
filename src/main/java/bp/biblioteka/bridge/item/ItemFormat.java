@@ -1,4 +1,4 @@
-package bp.biblioteka.bridge;
+package bp.biblioteka.bridge.item;
 
 //Tydzień 3, Wzorzec Bridge
 //Podział itemu na format fizyczny i cyfrowy

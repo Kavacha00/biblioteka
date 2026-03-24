@@ -1,6 +1,6 @@
 package bp.biblioteka.entity.item;
 
-import bp.biblioteka.bridge.ItemFormat;
+import bp.biblioteka.bridge.item.ItemFormat;
 
 import java.util.UUID;
 
@@ -32,4 +32,8 @@ public abstract class Item {
     public ItemFormat getFormat() { return this.format; }
 
     public abstract String describe();
+
+    public String getInternalDetails(){
+        return " | " + this.getId();
+    }
 }

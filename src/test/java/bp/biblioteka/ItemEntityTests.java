@@ -1,16 +1,19 @@
 package bp.biblioteka;
 
-import bp.biblioteka.adapter.BookTranslateAdapter;
-import bp.biblioteka.adapter.ItemTranslatorObjectAdapterImpl;
-import bp.biblioteka.bridge.DigitalFormat;
-import bp.biblioteka.bridge.ItemFormat;
-import bp.biblioteka.bridge.PhysicalFormat;
-import bp.biblioteka.builder.item.BookBuilder;
-import bp.biblioteka.composite.AuthorCollection;
-import bp.biblioteka.decorator.BestsellerDecorator;
+import bp.biblioteka.adapter.item.BookTranslateAdapter;
+import bp.biblioteka.adapter.item.ItemTranslatorObjectAdapterImpl;
+import bp.biblioteka.bridge.item.DigitalFormat;
+import bp.biblioteka.bridge.item.ItemFormat;
+import bp.biblioteka.bridge.item.PhysicalFormat;
+import bp.biblioteka.composite.item.AuthorCollection;
+import bp.biblioteka.decorator.Item.BestsellerDecorator;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
-import bp.biblioteka.factory.item.BookCreator;
+import bp.biblioteka.entity.user.Customer;
+import bp.biblioteka.entity.user.Employee;
+import bp.biblioteka.entity.user.User;
+import bp.biblioteka.facade.item.ItemFacade;
+import bp.biblioteka.proxy.item.SecuredItemProxy;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -131,5 +134,56 @@ public class ItemEntityTests {
         assertEquals(normalBook.getId(), bestseller.getId(), "Udekorowany obiekt musi mieć to samo ID co oryginał");
 
         assertEquals(normalBook.getFormat(), bestseller.getFormat(), "Udekorowany obiekt musi zachować format oryginału");
+    }
+
+
+
+    @Test
+    public void testFacadeCreatesObjectsCorrectly() {
+        ItemFacade facade = new ItemFacade();
+
+        Item physicalBook = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+        Item digitalBestseller = facade.createBestsellerBook("J.R.R. Tolkien", "Hobbit", true);
+
+        assertEquals("Andrzej Sapkowski", physicalBook.getAuthor(), "Fasada powinna poprawnie ustawić autora");
+        assertEquals("Wiedźmin", physicalBook.getTitle(), "Fasada powinna poprawnie ustawić tytuł");
+
+        assertTrue(digitalBestseller.getFormat().isDownloadable(), "Bestseller stworzony jako 'digital' powinien być pobieralny");
+    }
+
+    @Test
+    public void testProxyAccessControl() {
+        ItemFacade facade = new ItemFacade();
+        Item baseBook = facade.createPhysicalBook("Frank Herbert", "Diuna");
+
+        User pracownik = new Employee("Anna Nowak", "anna@anna", "anna", "anna");
+        User zwyklyKlient = new Customer("Jan Kowalski", "jan@jan",  "jan", "jan");
+
+        Item proxyForEmployee = new SecuredItemProxy(baseBook, pracownik);
+        Item proxyForCustomer = new SecuredItemProxy(baseBook, zwyklyKlient);
+
+        String employeeDetails = proxyForEmployee.getInternalDetails();
+        assertNotEquals("Odmowa dostępu", employeeDetails, "Pracownik powinien widzieć tajne dane");
+
+        String customerDetails = proxyForCustomer.getInternalDetails();
+        assertEquals("Odmowa dostępu", customerDetails, "Zwykły klient powinien dostać komunikat o odmowie dostępu");
+
+        assertEquals(baseBook.describe(), proxyForCustomer.describe(), "Proxy nie powinno blokować metody describe()");
+    }
+
+    @Test
+    public void testFlyweightSharesFormatInstances() {
+        ItemFacade facade = new ItemFacade();
+
+        Item book1 = facade.createPhysicalBook("Autor 1", "Tytuł 1");
+        Item book2 = facade.createPhysicalBook("Autor 2", "Tytuł 2");
+        Item book3 = facade.createPhysicalBook("Autor 3", "Tytuł 3");
+
+        ItemFormat format1 = book1.getFormat();
+        ItemFormat format2 = book2.getFormat();
+        ItemFormat format3 = book3.getFormat();
+
+        assertSame(format1, format2, "Książka 1 i Książka 2 powinny współdzielić dokładnie ten sam obiekt formatu fizycznego");
+        assertSame(format2, format3, "Książka 2 i Książka 3 powinny współdzielić dokładnie ten sam obiekt formatu fizycznego");
     }
 }

@@ -1,6 +1,6 @@
 package bp.biblioteka.entity.item;
 
-import bp.biblioteka.bridge.ItemFormat;
+import bp.biblioteka.bridge.item.ItemFormat;
 
 public class CD extends Item {
     public CD(String author, String title, ItemFormat format) {
