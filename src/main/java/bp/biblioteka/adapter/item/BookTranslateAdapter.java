@@ -1,4 +1,4 @@
-package bp.biblioteka.adapter;
+package bp.biblioteka.adapter.item;
 
 //Tydzień 3, wzorzec Adapter
 //Możliwość zmiany języka opisu

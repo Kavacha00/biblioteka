@@ -1,6 +1,6 @@
-package bp.biblioteka.composite;
+package bp.biblioteka.composite.item;
 
-import bp.biblioteka.bridge.CollectionFormat;
+import bp.biblioteka.bridge.item.CollectionFormat;
 import bp.biblioteka.entity.item.Item;
 
 import java.util.ArrayList;
