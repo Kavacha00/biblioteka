@@ -8,6 +8,11 @@ import bp.biblioteka.bridge.item.PhysicalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+
+//Tydzień 4, Wzorzec Flyweight 3
+//Optymalizacja pamięci poprzez stworzenie pojedynczej
+//instancji danego formatu zamiast robić za każdym razem
+//new PhysicalFormat()
 public class FormatFactory {
     private static final Map<String, ItemFormat> formatMap = new HashMap<>();
     public static ItemFormat getItemFormat(String format){
@@ -30,9 +35,9 @@ public class FormatFactory {
 
             }
             formatMap.put(key, itemFormat);
-//            System.out.println(format);
         }
         return itemFormat;
     }
 
 }
+//Koniec, Tydzień 3, Wzorzec Flyweight 3

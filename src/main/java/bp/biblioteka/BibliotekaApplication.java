@@ -1,13 +1,7 @@
 package bp.biblioteka;
 
-import bp.biblioteka.bridge.item.PhysicalFormat;
-import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
-import bp.biblioteka.entity.user.Customer;
-import bp.biblioteka.entity.user.Employee;
-import bp.biblioteka.entity.user.User;
-import bp.biblioteka.facade.ItemFacade;
-import bp.biblioteka.proxy.item.SecuredItemProxy;
+import bp.biblioteka.facade.item.ItemFacade;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication

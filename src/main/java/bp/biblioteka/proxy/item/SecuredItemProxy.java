@@ -4,6 +4,9 @@ import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.entity.user.Employee;
 import bp.biblioteka.entity.user.User;
 
+//Tydzień 4, Wzorzec Proxy 3
+//Uprawniony użytkownik (pracownik) ma dostęp do ukrytych
+//danych - ID przedmiotu
 public class SecuredItemProxy extends Item {
 
     private Item item;
@@ -28,3 +31,4 @@ public class SecuredItemProxy extends Item {
         else return "Odmowa dostępu";
     }
 }
+//Koniec, Tydzień 4, Wzorzec Proxy 3

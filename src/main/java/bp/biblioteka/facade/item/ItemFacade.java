@@ -1,4 +1,4 @@
-package bp.biblioteka.facade;
+package bp.biblioteka.facade.item;
 
 import bp.biblioteka.bridge.item.DigitalFormat;
 import bp.biblioteka.bridge.item.ItemFormat;
@@ -9,6 +9,9 @@ import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.factory.item.BookCreator;
 import bp.biblioteka.flyweight.item.FormatFactory;
 
+//Tydzień 4, Wzorzec Facade 3
+//Dotychczasowe funkcjonalności owite w jedną klasę
+//aby tworzenie książek było prostsze
 public class ItemFacade {
     private final BookCreator bookCreator;
     private final ItemFormat physicalFormat;
@@ -39,3 +42,4 @@ public class ItemFacade {
         return new AuthorCollection(author);
     }
 }
+//Koniec, Tydzień 4, Wzorzec Facade 3
