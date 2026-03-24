@@ -1,5 +1,6 @@
 package bp.biblioteka.adapter.store;
 
+import bp.biblioteka.bridge.DigitalFormat;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.user.Customer;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,11 @@ class CsvReportAdapterTest {
                 "jan123",
                 "pass"
         ));
-        loan.setBook(new Book("Sapkowski", "Wiedźmin"));
+        loan.setBook(new Book(
+                "Sapkowski",
+                "Wiedźmin",
+                new DigitalFormat()
+        ));
         loan.setStartDate(LocalDate.of(2024, 1, 1));
         loan.setEndDate(LocalDate.of(2024, 1, 10));
 
