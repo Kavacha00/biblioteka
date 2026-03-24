@@ -3,7 +3,7 @@ package bp.biblioteka.facede.store;
 import bp.biblioteka.adapter.store.CsvReportAdapter;
 import bp.biblioteka.adapter.store.CsvReportGenerator;
 import bp.biblioteka.adapter.store.Loan;
-import bp.biblioteka.bridge.DigitalFormat;
+import bp.biblioteka.bridge.item.DigitalFormat;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.user.Employee;
 import bp.biblioteka.facade.store.StoreFacade;
