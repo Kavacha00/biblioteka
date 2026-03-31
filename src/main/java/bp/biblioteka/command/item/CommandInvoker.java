@@ -11,3 +11,4 @@ public class CommandInvoker {
     }
 
 }
+//Koniec, Tydzień 5, Wzorzec Command 3

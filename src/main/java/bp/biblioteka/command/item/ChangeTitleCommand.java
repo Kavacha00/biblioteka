@@ -18,4 +18,3 @@ public class ChangeTitleCommand implements ItemCommand {
         this.item.setTitle(this.newTitle);
     }
 }
-//Koniec, Tydzień 5, Wzorzec Command 3

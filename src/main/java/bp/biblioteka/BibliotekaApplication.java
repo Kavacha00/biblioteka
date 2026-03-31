@@ -5,10 +5,16 @@ import bp.biblioteka.command.item.CommandInvoker;
 import bp.biblioteka.command.item.ItemCommand;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
+import bp.biblioteka.entity.user.Customer;
+import bp.biblioteka.entity.user.User;
 import bp.biblioteka.facade.item.ItemFacade;
 import bp.biblioteka.iterator.item.ItemCollection;
 import bp.biblioteka.iterator.item.ItemCollectionImpl;
 import bp.biblioteka.iterator.item.ItemIterator;
+import bp.biblioteka.mediator.LibraryMediator;
+import bp.biblioteka.mediator.LibraryMediatorImpl;
+import bp.biblioteka.memento.item.ItemHistory;
+import bp.biblioteka.memento.item.ItemMemento;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -157,17 +163,71 @@ public class BibliotekaApplication {
 //        }
 
 
+//        ItemFacade facade = new ItemFacade();
+//        CommandInvoker invoker = new CommandInvoker();
+//
+//        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//        System.out.println("Początkowa książka: " + book.getTitle());
+//
+//        ItemCommand mistypedCommand = new ChangeTitleCommand(book, "Wiedźmi");
+//
+//        invoker.execute(mistypedCommand);
+//        System.out.println("Po zmianie: " + book.getTitle());
+
+
+//        ItemFacade facade = new ItemFacade();
+//        ItemHistory opiekunHistorii = new ItemHistory();
+//
+//        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//
+//        opiekunHistorii.backup(book.saveStateToMemento());
+//
+//        book.setTitle("Wiedźmi - błąd w druku");
+//        System.out.println("Stan po błędzie: " + book.getTitle());
+//
+//        opiekunHistorii.backup(book.saveStateToMemento());
+//        book.setTitle("Wiedxmak");
+//        System.out.println("Stan po drugim błędzie: " + book.getTitle());
+//
+//
+//        ItemMemento ostatniStan = opiekunHistorii.undo();
+//        if (ostatniStan != null) book.restoreStateFromMemento(ostatniStan);
+//        System.out.println("Obecny tytuł: " + book.getTitle());
+//
+//        ItemMemento oryginalnyStan = opiekunHistorii.undo();
+//        if (oryginalnyStan != null) book.restoreStateFromMemento(oryginalnyStan);
+//        System.out.println("Obecny tytuł: " + book.getTitle());
+
+
+
         ItemFacade facade = new ItemFacade();
-        CommandInvoker invoker = new CommandInvoker();
+        LibraryMediator mediator = new LibraryMediatorImpl();
 
         Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
-        System.out.println("Początkowa książka: " + book.getTitle());
+        User user1 = new Customer("Jan Kowalski", "", "", "");
+        User user2 = new Customer("Anna Nowak", "", "", "");
 
-        ItemCommand mistypedCommand = new ChangeTitleCommand(book, "Wiedźmi");
+        System.out.println("Stan początkowy. Czy wypożyczona? " + book.isBorrowed());
+        System.out.println("--------------------------------------------------");
 
-        invoker.execute(mistypedCommand);
-        System.out.println("Po zmianie: " + book.getTitle());
+        System.out.println("Akcja: Jan wypożycza książkę.");
+        mediator.borrowItem(user1, book);
+        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+        System.out.println("--------------------------------------------------");
 
+        System.out.println("Akcja: Anna próbuje wypożyczyć tę samą książkę.");
+        mediator.borrowItem(user2, book);
+        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+        System.out.println("--------------------------------------------------");
+
+       System.out.println("Akcja: Jan zwraca książkę.");
+        mediator.returnItem(user1, book);
+        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+        System.out.println("--------------------------------------------------");
+
+        System.out.println("Akcja: Anna próbuje zwrócić książkę.");
+        mediator.returnItem(user2, book);
+        System.out.println("Czy wypożyczona? " + book.isBorrowed());
 
     }
 
