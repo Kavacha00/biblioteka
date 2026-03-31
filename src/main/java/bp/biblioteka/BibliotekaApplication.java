@@ -1,5 +1,8 @@
 package bp.biblioteka;
 
+import bp.biblioteka.command.item.ChangeTitleCommand;
+import bp.biblioteka.command.item.CommandInvoker;
+import bp.biblioteka.command.item.ItemCommand;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.facade.item.ItemFacade;
@@ -127,31 +130,45 @@ public class BibliotekaApplication {
 //        System.out.println(book1.getFormat() == book2.getFormat());
 
 
+//        ItemFacade facade = new ItemFacade();
+//
+//        ItemCollection biblioteczka = new ItemCollectionImpl();
+//
+//        biblioteczka.addItem(facade.createPhysicalBook("Andrzej Sapkowski", "Ostatnie Życzenie"));
+//        biblioteczka.addItem(facade.createDigitalBook("J.R.R. Tolkien", "Hobbit"));
+//        biblioteczka.addItem(facade.createPhysicalBook("Andrzej Sapkowski", "Krew Elfów"));
+//        biblioteczka.addItem(facade.createBestsellerBook("Frank Herbert", "Diuna", false));
+//        biblioteczka.addItem(facade.createDigitalBook("Andrzej Sapkowski", "Wieża Jaskółki"));
+//
+//        String szukanyAutor = "Andrzej Sapkowski";
+//        ItemIterator sapkowskiIterator = biblioteczka.itemAuthorIterator(szukanyAutor);
+//
+//        System.out.println("\nZnalezione książki autora: " + szukanyAutor);
+//
+//        while (sapkowskiIterator.hasNext()) {
+//            Item znalezionaKsiazka = sapkowskiIterator.next();
+//            System.out.println(" - " + znalezionaKsiazka.getTitle() + " [" + znalezionaKsiazka.getFormat().format() + "]");
+//        }
+//
+//        sapkowskiIterator.reset();
+//
+//        if (sapkowskiIterator.hasNext()) {
+//            System.out.println("Po resecie pierwsza książka to znowu: " + sapkowskiIterator.next().getTitle());
+//        }
+
+
         ItemFacade facade = new ItemFacade();
+        CommandInvoker invoker = new CommandInvoker();
 
-        ItemCollection biblioteczka = new ItemCollectionImpl();
+        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+        System.out.println("Początkowa książka: " + book.getTitle());
 
-        biblioteczka.addItem(facade.createPhysicalBook("Andrzej Sapkowski", "Ostatnie Życzenie"));
-        biblioteczka.addItem(facade.createDigitalBook("J.R.R. Tolkien", "Hobbit"));
-        biblioteczka.addItem(facade.createPhysicalBook("Andrzej Sapkowski", "Krew Elfów"));
-        biblioteczka.addItem(facade.createBestsellerBook("Frank Herbert", "Diuna", false));
-        biblioteczka.addItem(facade.createDigitalBook("Andrzej Sapkowski", "Wieża Jaskółki"));
+        ItemCommand mistypedCommand = new ChangeTitleCommand(book, "Wiedźmi");
 
-        String szukanyAutor = "Andrzej Sapkowski";
-        ItemIterator sapkowskiIterator = biblioteczka.itemAuthorIterator(szukanyAutor);
+        invoker.execute(mistypedCommand);
+        System.out.println("Po zmianie: " + book.getTitle());
 
-        System.out.println("\nZnalezione książki autora: " + szukanyAutor);
 
-        while (sapkowskiIterator.hasNext()) {
-            Item znalezionaKsiazka = sapkowskiIterator.next();
-            System.out.println(" - " + znalezionaKsiazka.getTitle() + " [" + znalezionaKsiazka.getFormat().format() + "]");
-        }
-
-        sapkowskiIterator.reset();
-
-        if (sapkowskiIterator.hasNext()) {
-            System.out.println("Po resecie pierwsza książka to znowu: " + sapkowskiIterator.next().getTitle());
-        }
     }
 
 }

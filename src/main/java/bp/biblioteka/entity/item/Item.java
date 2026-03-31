@@ -27,6 +27,10 @@ public abstract class Item {
         return this.title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getAuthor() { return this.author; }
 
     public ItemFormat getFormat() { return this.format; }
