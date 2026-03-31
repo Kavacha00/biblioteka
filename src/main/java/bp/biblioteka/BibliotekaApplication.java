@@ -1,7 +1,11 @@
 package bp.biblioteka;
 
+import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.facade.item.ItemFacade;
+import bp.biblioteka.iterator.item.ItemCollection;
+import bp.biblioteka.iterator.item.ItemCollectionImpl;
+import bp.biblioteka.iterator.item.ItemIterator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -116,12 +120,38 @@ public class BibliotekaApplication {
 //        System.out.println(securedBook.getInternalDetails());
 
 
+//        ItemFacade facade = new ItemFacade();
+//        Item book1 = facade.createPhysicalBook("A", "B");
+//        Item book2 = facade.createPhysicalBook("C", "D");
+//
+//        System.out.println(book1.getFormat() == book2.getFormat());
+
+
         ItemFacade facade = new ItemFacade();
-        Item book1 = facade.createPhysicalBook("A", "B");
-        Item book2 = facade.createPhysicalBook("C", "D");
 
-        System.out.println(book1.getFormat() == book2.getFormat());
+        ItemCollection biblioteczka = new ItemCollectionImpl();
 
+        biblioteczka.addItem(facade.createPhysicalBook("Andrzej Sapkowski", "Ostatnie Życzenie"));
+        biblioteczka.addItem(facade.createDigitalBook("J.R.R. Tolkien", "Hobbit"));
+        biblioteczka.addItem(facade.createPhysicalBook("Andrzej Sapkowski", "Krew Elfów"));
+        biblioteczka.addItem(facade.createBestsellerBook("Frank Herbert", "Diuna", false));
+        biblioteczka.addItem(facade.createDigitalBook("Andrzej Sapkowski", "Wieża Jaskółki"));
+
+        String szukanyAutor = "Andrzej Sapkowski";
+        ItemIterator sapkowskiIterator = biblioteczka.itemAuthorIterator(szukanyAutor);
+
+        System.out.println("\nZnalezione książki autora: " + szukanyAutor);
+
+        while (sapkowskiIterator.hasNext()) {
+            Item znalezionaKsiazka = sapkowskiIterator.next();
+            System.out.println(" - " + znalezionaKsiazka.getTitle() + " [" + znalezionaKsiazka.getFormat().format() + "]");
+        }
+
+        sapkowskiIterator.reset();
+
+        if (sapkowskiIterator.hasNext()) {
+            System.out.println("Po resecie pierwsza książka to znowu: " + sapkowskiIterator.next().getTitle());
+        }
     }
 
 }
