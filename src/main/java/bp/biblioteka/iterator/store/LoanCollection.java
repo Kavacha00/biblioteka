@@ -5,6 +5,8 @@ import bp.biblioteka.adapter.store.Loan;
 import java.util.ArrayList;
 import java.util.List;
 
+//Tydzień 5, Wzorzec Iterator 1
+//Kolekcja wypożyczeń udostępniająca własny iterator
 public class LoanCollection {
     private List<Loan> loans = new ArrayList<>();
 
@@ -35,3 +37,4 @@ public class LoanCollection {
         }
     }
 }
+// Koniec, Tydzień 5, Wzorzec Iterator 1
