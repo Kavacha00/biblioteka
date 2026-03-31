@@ -1,9 +1,10 @@
 package bp.biblioteka.iterator.store;
 
 import bp.biblioteka.adapter.store.Loan;
-
 import java.util.List;
 
+//Tydzień 5, Wzorzec Iterator 1
+//Iterator filtrujący — przechodzi tylko po aktywnych wypożyczeniach (endDate == null)
 public class ActiveLoanIterator implements LoanIterator {
     private final List<Loan> loans;
     private int index = 0;
@@ -31,3 +32,4 @@ public class ActiveLoanIterator implements LoanIterator {
         return loan;
     }
 }
+// Koniec, Tydzień 5, Wzorzec Iterator 1

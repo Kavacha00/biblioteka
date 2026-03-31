@@ -2,6 +2,8 @@ package bp.biblioteka.memento.store;
 
 import bp.biblioteka.adapter.store.Loan;
 
+//Tydzień 5, Wzorzec Memento 1
+//Originator — tworzy memento i potrafi odtworzyć stan wypożyczenia
 public class LoanOriginator {
 
     private Loan loan;
@@ -19,3 +21,4 @@ public class LoanOriginator {
         loan.setEndDate(memento.getEndDate());
     }
 }
+// Koniec, Tydzień 5, Wzorzec Memento 1

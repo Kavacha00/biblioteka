@@ -3,6 +3,9 @@ package bp.biblioteka.mediator.store;
 import bp.biblioteka.adapter.store.Loan;
 import bp.biblioteka.adapter.store.ReportService;
 
+//Tydzień 5, Wzorzec Mediator 1
+//Centralny mediator obsługujący zdarzenia w systemie
+//Decyduje, które serwisy powinny reagować na dane wydarzenie
 public class StoreEventMediator implements StoreMediator {
 
     private NotificationService notificationService;
@@ -10,8 +13,8 @@ public class StoreEventMediator implements StoreMediator {
     private ReportService reportService;
 
     public StoreEventMediator(NotificationService notificationService,
-                                InventoryService inventoryService,
-                                ReportService reportService) {
+                              InventoryService inventoryService,
+                              ReportService reportService) {
         this.notificationService = notificationService;
         this.inventoryService = inventoryService;
         this.reportService = reportService;
@@ -37,3 +40,4 @@ public class StoreEventMediator implements StoreMediator {
         }
     }
 }
+// Koniec, Tydzień 5, Wzorzec Mediator 1
