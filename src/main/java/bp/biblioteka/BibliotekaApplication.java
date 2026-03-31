@@ -8,6 +8,10 @@ import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.entity.user.Customer;
 import bp.biblioteka.entity.user.User;
 import bp.biblioteka.facade.item.ItemFacade;
+import bp.biblioteka.interpreter.item.AndExpression;
+import bp.biblioteka.interpreter.item.AuthorExpression;
+import bp.biblioteka.interpreter.item.ItemExpression;
+import bp.biblioteka.interpreter.item.TitleExpression;
 import bp.biblioteka.iterator.item.ItemCollection;
 import bp.biblioteka.iterator.item.ItemCollectionImpl;
 import bp.biblioteka.iterator.item.ItemIterator;
@@ -16,6 +20,9 @@ import bp.biblioteka.mediator.LibraryMediatorImpl;
 import bp.biblioteka.memento.item.ItemHistory;
 import bp.biblioteka.memento.item.ItemMemento;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class BibliotekaApplication {
@@ -200,35 +207,58 @@ public class BibliotekaApplication {
 
 
 
+//        ItemFacade facade = new ItemFacade();
+//        LibraryMediator mediator = new LibraryMediatorImpl();
+//
+//        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//        User user1 = new Customer("Jan Kowalski", "", "", "");
+//        User user2 = new Customer("Anna Nowak", "", "", "");
+//
+//        System.out.println("Stan początkowy. Czy wypożyczona? " + book.isBorrowed());
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Jan wypożycza książkę.");
+//        mediator.borrowItem(user1, book);
+//        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Anna próbuje wypożyczyć tę samą książkę.");
+//        mediator.borrowItem(user2, book);
+//        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+//        System.out.println("--------------------------------------------------");
+//
+//       System.out.println("Akcja: Jan zwraca książkę.");
+//        mediator.returnItem(user1, book);
+//        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Anna próbuje zwrócić książkę.");
+//        mediator.returnItem(user2, book);
+//        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+
+
         ItemFacade facade = new ItemFacade();
-        LibraryMediator mediator = new LibraryMediatorImpl();
+        List<Item> library = new ArrayList<>();
 
-        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
-        User user1 = new Customer("Jan Kowalski", "", "", "");
-        User user2 = new Customer("Anna Nowak", "", "", "");
+        library.add(facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin: Krew Elfów"));
+        library.add(facade.createPhysicalBook("Andrzej Sapkowski", "Ostatnie Życzenie"));
+        library.add(facade.createPhysicalBook("J.R.R. Tolkien", "Władca Pierścieni"));
+        library.add(facade.createDigitalBook("Henryk Sienkiewicz", "Ogniem i Mieczem"));
 
-        System.out.println("Stan początkowy. Czy wypożyczona? " + book.isBorrowed());
-        System.out.println("--------------------------------------------------");
+        ItemExpression isSapkowski = new AuthorExpression("sapkowski");
+        ItemExpression isWiedzmin = new TitleExpression("wiedźmin");
 
-        System.out.println("Akcja: Jan wypożycza książkę.");
-        mediator.borrowItem(user1, book);
-        System.out.println("Czy wypożyczona? " + book.isBorrowed());
-        System.out.println("--------------------------------------------------");
+        ItemExpression strictSearch = new AndExpression(isSapkowski, isWiedzmin);
 
-        System.out.println("Akcja: Anna próbuje wypożyczyć tę samą książkę.");
-        mediator.borrowItem(user2, book);
-        System.out.println("Czy wypożyczona? " + book.isBorrowed());
-        System.out.println("--------------------------------------------------");
+        System.out.println("Wyniki wyszukiwania (Autor: Sapkowski AND Tytuł: Wiedźmin):");
 
-       System.out.println("Akcja: Jan zwraca książkę.");
-        mediator.returnItem(user1, book);
-        System.out.println("Czy wypożyczona? " + book.isBorrowed());
-        System.out.println("--------------------------------------------------");
-
-        System.out.println("Akcja: Anna próbuje zwrócić książkę.");
-        mediator.returnItem(user2, book);
-        System.out.println("Czy wypożyczona? " + book.isBorrowed());
-
+        for (Item item : library) {
+            if (strictSearch.interpret(item)) {
+                System.out.println("Znaleziono: " + item.getAuthor() + " - " + item.getTitle());
+            } else {
+                System.out.println("Odrzucono: " + item.getAuthor() + " - " + item.getTitle());
+            }
+        }
     }
 
 }
