@@ -1,6 +1,7 @@
 package bp.biblioteka.entity.item;
 
 import bp.biblioteka.bridge.item.ItemFormat;
+import bp.biblioteka.memento.item.ItemMemento;
 
 import java.util.UUID;
 
@@ -27,6 +28,10 @@ public abstract class Item {
         return this.title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getAuthor() { return this.author; }
 
     public ItemFormat getFormat() { return this.format; }
@@ -35,5 +40,22 @@ public abstract class Item {
 
     public String getInternalDetails(){
         return " | " + this.getId();
+    }
+
+    public ItemMemento saveStateToMemento(){
+        return new ItemMemento(this.title, this.author);
+    }
+
+    public void restoreStateFromMemento(ItemMemento memento){
+        this.title = memento.getTitle();
+        this.author = memento.getAuthor();
+    }
+
+    public boolean isBorrowed = false;
+    public boolean isBorrowed() {
+        return isBorrowed;
+    }
+    public void setBorrowed(boolean borrowed) {
+        this.isBorrowed = borrowed;
     }
 }

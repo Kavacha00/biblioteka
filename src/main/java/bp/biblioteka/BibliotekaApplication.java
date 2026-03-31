@@ -1,8 +1,28 @@
 package bp.biblioteka;
 
+import bp.biblioteka.command.item.ChangeTitleCommand;
+import bp.biblioteka.command.item.CommandInvoker;
+import bp.biblioteka.command.item.ItemCommand;
+import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
+import bp.biblioteka.entity.user.Customer;
+import bp.biblioteka.entity.user.User;
 import bp.biblioteka.facade.item.ItemFacade;
+import bp.biblioteka.interpreter.item.AndExpression;
+import bp.biblioteka.interpreter.item.AuthorExpression;
+import bp.biblioteka.interpreter.item.ItemExpression;
+import bp.biblioteka.interpreter.item.TitleExpression;
+import bp.biblioteka.iterator.item.ItemCollection;
+import bp.biblioteka.iterator.item.ItemCollectionImpl;
+import bp.biblioteka.iterator.item.ItemIterator;
+import bp.biblioteka.mediator.LibraryMediator;
+import bp.biblioteka.mediator.LibraryMediatorImpl;
+import bp.biblioteka.memento.item.ItemHistory;
+import bp.biblioteka.memento.item.ItemMemento;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class BibliotekaApplication {
@@ -116,12 +136,129 @@ public class BibliotekaApplication {
 //        System.out.println(securedBook.getInternalDetails());
 
 
+//        ItemFacade facade = new ItemFacade();
+//        Item book1 = facade.createPhysicalBook("A", "B");
+//        Item book2 = facade.createPhysicalBook("C", "D");
+//
+//        System.out.println(book1.getFormat() == book2.getFormat());
+
+
+//        ItemFacade facade = new ItemFacade();
+//
+//        ItemCollection biblioteczka = new ItemCollectionImpl();
+//
+//        biblioteczka.addItem(facade.createPhysicalBook("Andrzej Sapkowski", "Ostatnie Życzenie"));
+//        biblioteczka.addItem(facade.createDigitalBook("J.R.R. Tolkien", "Hobbit"));
+//        biblioteczka.addItem(facade.createPhysicalBook("Andrzej Sapkowski", "Krew Elfów"));
+//        biblioteczka.addItem(facade.createBestsellerBook("Frank Herbert", "Diuna", false));
+//        biblioteczka.addItem(facade.createDigitalBook("Andrzej Sapkowski", "Wieża Jaskółki"));
+//
+//        String szukanyAutor = "Andrzej Sapkowski";
+//        ItemIterator sapkowskiIterator = biblioteczka.itemAuthorIterator(szukanyAutor);
+//
+//        System.out.println("\nZnalezione książki autora: " + szukanyAutor);
+//
+//        while (sapkowskiIterator.hasNext()) {
+//            Item znalezionaKsiazka = sapkowskiIterator.next();
+//            System.out.println(" - " + znalezionaKsiazka.getTitle() + " [" + znalezionaKsiazka.getFormat().format() + "]");
+//        }
+//
+//        sapkowskiIterator.reset();
+//
+//        if (sapkowskiIterator.hasNext()) {
+//            System.out.println("Po resecie pierwsza książka to znowu: " + sapkowskiIterator.next().getTitle());
+//        }
+
+
+//        ItemFacade facade = new ItemFacade();
+//        CommandInvoker invoker = new CommandInvoker();
+//
+//        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//        System.out.println("Początkowa książka: " + book.getTitle());
+//
+//        ItemCommand mistypedCommand = new ChangeTitleCommand(book, "Wiedźmi");
+//
+//        invoker.execute(mistypedCommand);
+//        System.out.println("Po zmianie: " + book.getTitle());
+
+
+//        ItemFacade facade = new ItemFacade();
+//        ItemHistory opiekunHistorii = new ItemHistory();
+//
+//        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//
+//        opiekunHistorii.backup(book.saveStateToMemento());
+//
+//        book.setTitle("Wiedźmi - błąd w druku");
+//        System.out.println("Stan po błędzie: " + book.getTitle());
+//
+//        opiekunHistorii.backup(book.saveStateToMemento());
+//        book.setTitle("Wiedxmak");
+//        System.out.println("Stan po drugim błędzie: " + book.getTitle());
+//
+//
+//        ItemMemento ostatniStan = opiekunHistorii.undo();
+//        if (ostatniStan != null) book.restoreStateFromMemento(ostatniStan);
+//        System.out.println("Obecny tytuł: " + book.getTitle());
+//
+//        ItemMemento oryginalnyStan = opiekunHistorii.undo();
+//        if (oryginalnyStan != null) book.restoreStateFromMemento(oryginalnyStan);
+//        System.out.println("Obecny tytuł: " + book.getTitle());
+
+
+
+//        ItemFacade facade = new ItemFacade();
+//        LibraryMediator mediator = new LibraryMediatorImpl();
+//
+//        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//        User user1 = new Customer("Jan Kowalski", "", "", "");
+//        User user2 = new Customer("Anna Nowak", "", "", "");
+//
+//        System.out.println("Stan początkowy. Czy wypożyczona? " + book.isBorrowed());
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Jan wypożycza książkę.");
+//        mediator.borrowItem(user1, book);
+//        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Anna próbuje wypożyczyć tę samą książkę.");
+//        mediator.borrowItem(user2, book);
+//        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+//        System.out.println("--------------------------------------------------");
+//
+//       System.out.println("Akcja: Jan zwraca książkę.");
+//        mediator.returnItem(user1, book);
+//        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Anna próbuje zwrócić książkę.");
+//        mediator.returnItem(user2, book);
+//        System.out.println("Czy wypożyczona? " + book.isBorrowed());
+
+
         ItemFacade facade = new ItemFacade();
-        Item book1 = facade.createPhysicalBook("A", "B");
-        Item book2 = facade.createPhysicalBook("C", "D");
+        List<Item> library = new ArrayList<>();
 
-        System.out.println(book1.getFormat() == book2.getFormat());
+        library.add(facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin: Krew Elfów"));
+        library.add(facade.createPhysicalBook("Andrzej Sapkowski", "Ostatnie Życzenie"));
+        library.add(facade.createPhysicalBook("J.R.R. Tolkien", "Władca Pierścieni"));
+        library.add(facade.createDigitalBook("Henryk Sienkiewicz", "Ogniem i Mieczem"));
 
+        ItemExpression isSapkowski = new AuthorExpression("sapkowski");
+        ItemExpression isWiedzmin = new TitleExpression("wiedźmin");
+
+        ItemExpression strictSearch = new AndExpression(isSapkowski, isWiedzmin);
+
+        System.out.println("Wyniki wyszukiwania (Autor: Sapkowski AND Tytuł: Wiedźmin):");
+
+        for (Item item : library) {
+            if (strictSearch.interpret(item)) {
+                System.out.println("Znaleziono: " + item.getAuthor() + " - " + item.getTitle());
+            } else {
+                System.out.println("Odrzucono: " + item.getAuthor() + " - " + item.getTitle());
+            }
+        }
     }
 
 }
