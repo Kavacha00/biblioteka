@@ -31,4 +31,7 @@ public class Book extends Item implements Cloneable {
     public String getInternalDetails() {
         return String.valueOf(this.getId());
     }
+
+
+
 }

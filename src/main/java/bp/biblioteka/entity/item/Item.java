@@ -3,6 +3,7 @@ package bp.biblioteka.entity.item;
 import bp.biblioteka.bridge.item.ItemFormat;
 import bp.biblioteka.memento.item.ItemMemento;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Item {
@@ -57,5 +58,17 @@ public abstract class Item {
     }
     public void setBorrowed(boolean borrowed) {
         this.isBorrowed = borrowed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(id, item.id) && Objects.equals(title, item.title) && Objects.equals(author, item.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, author);
     }
 }
