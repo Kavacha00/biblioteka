@@ -2,6 +2,7 @@ package bp.biblioteka.entity.item;
 
 import bp.biblioteka.bridge.item.ItemFormat;
 import bp.biblioteka.memento.item.ItemMemento;
+import bp.biblioteka.state.item.ItemState;
 
 import java.util.UUID;
 
@@ -51,11 +52,19 @@ public abstract class Item {
         this.author = memento.getAuthor();
     }
 
-    public boolean isBorrowed = false;
-    public boolean isBorrowed() {
-        return isBorrowed;
+//    public boolean isBorrowed = false;
+//    public boolean isBorrowed() {
+//        return isBorrowed;
+//    }
+//    public void setBorrowed(boolean borrowed) {
+//        this.isBorrowed = borrowed;
+//    }
+
+    private bp.biblioteka.state.item.ItemState itemState = new bp.biblioteka.state.item.AvailableState();
+    public bp.biblioteka.state.item.ItemState getItemState() {
+        return itemState;
     }
-    public void setBorrowed(boolean borrowed) {
-        this.isBorrowed = borrowed;
+    public void setItemState(bp.biblioteka.state.item.ItemState itemState) {
+        this.itemState = itemState;
     }
 }
