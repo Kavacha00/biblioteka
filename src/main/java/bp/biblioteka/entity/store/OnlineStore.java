@@ -1,7 +1,5 @@
 package bp.biblioteka.entity.store;
 
-import java.util.UUID;
-
 public class OnlineStore extends Store {
 
     public OnlineStore(String name, String email, String address, String phoneNumber) {
@@ -10,6 +8,10 @@ public class OnlineStore extends Store {
 
     @Override
     public String processOrder() {
-        return "Processing order in online store";
+        String result = "Processing order in online store";
+        // Tydzień 6, Wzorzec Observer 1
+        // Powiadomienie obserwatorów o akcji
+        notifyObservers(result);
+        return result;
     }
 }

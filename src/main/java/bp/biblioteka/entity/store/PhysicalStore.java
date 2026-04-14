@@ -1,11 +1,6 @@
 package bp.biblioteka.entity.store;
 
-
-import bp.biblioteka.entity.item.Book;
-
-import java.util.UUID;
-
-public class PhysicalStore extends Store  {
+public class PhysicalStore extends Store {
 
     public PhysicalStore(String name, String email, String address, String phoneNumber) {
         super(name, email, address, phoneNumber);
@@ -13,6 +8,10 @@ public class PhysicalStore extends Store  {
 
     @Override
     public String processOrder() {
-        return "Processing order in physical store";
+        String result = "Processing order in physical store";
+        // Tydzień 6, Wzorzec Observer 1
+        // Powiadomienie obserwatorów o akcji
+        notifyObservers(result);
+        return result;
     }
 }
