@@ -1,6 +1,3 @@
-// Tydzień 6, Wzorzec Strategy 1
-// Testy jednostkowe weryfikujące poprawność działania poszczególnych strategii zniżkowych.
-// Sprawdzają czy zmiana strategii w locie poprawnie wpływa na wynik kalkulacji.
 package bp.biblioteka.strategy.store;
 
 import org.junit.jupiter.api.Test;
@@ -23,4 +20,3 @@ public class PricingCalculatorTest {
         assertEquals(65.0, calculator.calculateFinalPrice(basePrice));
     }
 }
-// Koniec, Tydzień 6, Wzorzec Strategy 1
