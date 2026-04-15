@@ -1,11 +1,10 @@
 package bp.biblioteka.composite.store;
 
 import bp.biblioteka.entity.store.Store;
-
 import java.util.ArrayList;
 import java.util.List;
 
-//Tydzień 3, Wzorzec Composite 1,
+// Tydzień 3, Wzorzec Composite 1,
 // Wzorzec Composite pozwala traktować pojedyncze obiekty oraz ich grupy w jednolity sposób.
 // StoreGroup agreguje wiele obiektów Store i deleguje do nich operacje.
 public class StoreGroup extends Store {
@@ -26,7 +25,6 @@ public class StoreGroup extends Store {
 
     @Override
     public String processOrder() {
-
         StringBuilder result = new StringBuilder();
 
         for (Store store : stores) {
@@ -36,4 +34,5 @@ public class StoreGroup extends Store {
         return result.toString();
     }
 }
-//Koniec, Tydzień 3, Wzorzec Composite 1
+
+// Koniec, Tydzień 3, Wzorzec Composite 1

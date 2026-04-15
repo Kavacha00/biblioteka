@@ -1,0 +1,19 @@
+package bp.biblioteka.command.user;
+
+import bp.biblioteka.entity.user.User;
+import bp.biblioteka.proxy.user.UserService;
+
+public class RegisterUserCommand implements UserCommand {
+    private final UserService userService;
+    private final User user;
+
+    public RegisterUserCommand(UserService userService, User user) {
+        this.userService = userService;
+        this.user = user;
+    }
+
+    @Override
+    public void execute() {
+        userService.register(user);
+    }
+}
