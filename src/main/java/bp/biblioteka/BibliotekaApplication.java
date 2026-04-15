@@ -19,6 +19,12 @@ import bp.biblioteka.mediator.LibraryMediator;
 import bp.biblioteka.mediator.LibraryMediatorImpl;
 import bp.biblioteka.memento.item.ItemHistory;
 import bp.biblioteka.memento.item.ItemMemento;
+import bp.biblioteka.strategy.item.HighPenalty;
+import bp.biblioteka.template.item.DigitalBookProcessor;
+import bp.biblioteka.template.item.ItemProcessingTemplate;
+import bp.biblioteka.template.item.PhysicalBookProcessor;
+import bp.biblioteka.visitor.item.ItemVisitor;
+import bp.biblioteka.visitor.item.XmlExportVisitor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
@@ -237,28 +243,125 @@ public class BibliotekaApplication {
 //        System.out.println("Czy wypożyczona? " + book.isBorrowed());
 
 
+//        ItemFacade facade = new ItemFacade();
+//        List<Item> library = new ArrayList<>();
+//
+//        library.add(facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin: Krew Elfów"));
+//        library.add(facade.createPhysicalBook("Andrzej Sapkowski", "Ostatnie Życzenie"));
+//        library.add(facade.createPhysicalBook("J.R.R. Tolkien", "Władca Pierścieni"));
+//        library.add(facade.createDigitalBook("Henryk Sienkiewicz", "Ogniem i Mieczem"));
+//
+//        ItemExpression isSapkowski = new AuthorExpression("sapkowski");
+//        ItemExpression isWiedzmin = new TitleExpression("wiedźmin");
+//
+//        ItemExpression strictSearch = new AndExpression(isSapkowski, isWiedzmin);
+//
+//        System.out.println("Wyniki wyszukiwania (Autor: Sapkowski AND Tytuł: Wiedźmin):");
+//
+//        for (Item item : library) {
+//            if (strictSearch.interpret(item)) {
+//                System.out.println("Znaleziono: " + item.getAuthor() + " - " + item.getTitle());
+//            } else {
+//                System.out.println("Odrzucono: " + item.getAuthor() + " - " + item.getTitle());
+//            }
+//        }
+
+
+
+//        ItemFacade facade = new ItemFacade();
+//        LibraryMediator mediator = new LibraryMediatorImpl();
+//
+//        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//
+//        User jan = new Customer("Jan Kowalski", "", "", "");
+//        User anna = new Customer("Anna Nowak", "", "", "");
+//
+//        System.out.println("Stan początkowy: [" + book.getItemState().getStateName() + "]");
+//
+//        System.out.println("Akcja: Jan chce wypożyczyć książkę.");
+//        mediator.borrowItem(jan, book);
+//        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+//
+//        System.out.println("Akcja: Anna chce wypożyczyć książkę.");
+//        mediator.borrowItem(anna, book);
+//        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Jan zwraca książkę.");
+//        mediator.returnItem(jan, book);
+//        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Anna chce zwrócić książkę.");
+//        mediator.returnItem(anna, book);
+//        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+
+
+//        ItemFacade facade = new ItemFacade();
+//        LibraryMediator mediator = new LibraryMediatorImpl();
+//
+//        Item book = facade.createPhysicalBook("Frank Herbert", "Diuna");
+//
+//        Customer jan = new Customer("Jan Kowalski", "", "", "");
+//        Customer anna = new Customer("Anna Nowak", "", "", "");
+//        Customer piotr = new Customer("Piotr Wiśniewski", "", "", "");
+//
+//        System.out.println("1. Jan wypożycza 'Diunę'.");
+//        mediator.borrowItem(jan, book);
+//
+//        System.out.println("\n2. Anna i Piotr przychodzą do biblioteki, ale książki nie ma.");
+//        System.out.println("Zapisują się na listę powiadomień.");
+//
+//        book.addObserver(anna);
+//        book.addObserver(piotr);
+//
+//        System.out.println("\n3. Janzwraca książkę do biblioteki!");
+//        mediator.returnItem(jan, book);
+
+
+//        ItemFacade facade = new ItemFacade();
+//        int days = 4;
+//
+//        Item standardBook = facade.createPhysicalBook("Henryk Sienkiewicz", "Potop");
+//        System.out.println("Zwykła książka - kara: " + standardBook.calculatePenalty(days) + " PLN");
+//
+//        Item bestseller = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//        bestseller.setPenaltyStrategy(new HighPenalty());
+//        System.out.println("Bestseller - kara: " + bestseller.calculatePenalty(days) + " PLN");
+
+
+
+//        ItemFacade facade = new ItemFacade();
+//
+//        Item papierowa = facade.createPhysicalBook("Frank Herbert", "Diuna");
+//        Item cyfrowa = facade.createDigitalBook("J.R.R. Tolkien", "Hobbit (Audiobook)");
+//
+//        ItemProcessingTemplate procesorFizyczny = new PhysicalBookProcessor();
+//        ItemProcessingTemplate procesorCyfrowy = new DigitalBookProcessor();
+//
+//        procesorFizyczny.processNewItem(papierowa);
+//
+//        procesorCyfrowy.processNewItem(cyfrowa);
+
+
+
         ItemFacade facade = new ItemFacade();
-        List<Item> library = new ArrayList<>();
+        List<Item> magazyn = new ArrayList<>();
 
-        library.add(facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin: Krew Elfów"));
-        library.add(facade.createPhysicalBook("Andrzej Sapkowski", "Ostatnie Życzenie"));
-        library.add(facade.createPhysicalBook("J.R.R. Tolkien", "Władca Pierścieni"));
-        library.add(facade.createDigitalBook("Henryk Sienkiewicz", "Ogniem i Mieczem"));
+        Item zwyklaKsiazka = facade.createPhysicalBook("Frank Herbert", "Diuna");
+        magazyn.add(zwyklaKsiazka);
 
-        ItemExpression isSapkowski = new AuthorExpression("sapkowski");
-        ItemExpression isWiedzmin = new TitleExpression("wiedźmin");
+        Item hitSprzedazy = facade.createBestsellerBook("J.K. Rowling", "Harry Potter", false);
+        magazyn.add(hitSprzedazy);
 
-        ItemExpression strictSearch = new AndExpression(isSapkowski, isWiedzmin);
+        ItemVisitor eksportXml = new XmlExportVisitor();
 
-        System.out.println("Wyniki wyszukiwania (Autor: Sapkowski AND Tytuł: Wiedźmin):");
-
-        for (Item item : library) {
-            if (strictSearch.interpret(item)) {
-                System.out.println("Znaleziono: " + item.getAuthor() + " - " + item.getTitle());
-            } else {
-                System.out.println("Odrzucono: " + item.getAuthor() + " - " + item.getTitle());
-            }
+        System.out.println("Eksport bazy do pliku XML:\n");
+        for (Item element : magazyn) {
+            String xml = element.accept(eksportXml);
+            System.out.println(xml);
+            System.out.println("-------------------------");
         }
-    }
 
+    }
 }

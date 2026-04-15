@@ -1,8 +1,10 @@
 package bp.biblioteka.entity.user;
 
+import bp.biblioteka.observer.item.ItemObserver;
+
 import java.util.UUID;
 
-public class Customer extends User {
+public class Customer extends User implements ItemObserver {
     public Customer(String name, String email, String login, String password) {
         super(name, email, login, password);
     }
@@ -21,5 +23,11 @@ public class Customer extends User {
     public String logOut() {
         this.setLoggedIn(false);
         return "Customer logged out";
+    }
+
+
+    @Override
+    public void update(String itemName, String message) {
+        System.out.println(itemName + ": " + message);
     }
 }
