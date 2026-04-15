@@ -2,6 +2,7 @@ package bp.biblioteka.composite.item;
 
 import bp.biblioteka.bridge.item.CollectionFormat;
 import bp.biblioteka.entity.item.Item;
+import bp.biblioteka.visitor.item.ItemVisitor;
 
 import java.util.ArrayList;
 import java.util.List;

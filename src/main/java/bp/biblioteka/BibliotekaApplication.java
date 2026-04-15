@@ -23,6 +23,8 @@ import bp.biblioteka.strategy.item.HighPenalty;
 import bp.biblioteka.template.item.DigitalBookProcessor;
 import bp.biblioteka.template.item.ItemProcessingTemplate;
 import bp.biblioteka.template.item.PhysicalBookProcessor;
+import bp.biblioteka.visitor.item.ItemVisitor;
+import bp.biblioteka.visitor.item.XmlExportVisitor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
@@ -329,17 +331,37 @@ public class BibliotekaApplication {
 
 
 
+//        ItemFacade facade = new ItemFacade();
+//
+//        Item papierowa = facade.createPhysicalBook("Frank Herbert", "Diuna");
+//        Item cyfrowa = facade.createDigitalBook("J.R.R. Tolkien", "Hobbit (Audiobook)");
+//
+//        ItemProcessingTemplate procesorFizyczny = new PhysicalBookProcessor();
+//        ItemProcessingTemplate procesorCyfrowy = new DigitalBookProcessor();
+//
+//        procesorFizyczny.processNewItem(papierowa);
+//
+//        procesorCyfrowy.processNewItem(cyfrowa);
+
+
+
         ItemFacade facade = new ItemFacade();
+        List<Item> magazyn = new ArrayList<>();
 
-        Item papierowa = facade.createPhysicalBook("Frank Herbert", "Diuna");
-        Item cyfrowa = facade.createDigitalBook("J.R.R. Tolkien", "Hobbit (Audiobook)");
+        Item zwyklaKsiazka = facade.createPhysicalBook("Frank Herbert", "Diuna");
+        magazyn.add(zwyklaKsiazka);
 
-        ItemProcessingTemplate procesorFizyczny = new PhysicalBookProcessor();
-        ItemProcessingTemplate procesorCyfrowy = new DigitalBookProcessor();
+        Item hitSprzedazy = facade.createBestsellerBook("J.K. Rowling", "Harry Potter", false);
+        magazyn.add(hitSprzedazy);
 
-        procesorFizyczny.processNewItem(papierowa);
+        ItemVisitor eksportXml = new XmlExportVisitor();
 
-        procesorCyfrowy.processNewItem(cyfrowa);
+        System.out.println("Eksport bazy do pliku XML:\n");
+        for (Item element : magazyn) {
+            String xml = element.accept(eksportXml);
+            System.out.println(xml);
+            System.out.println("-------------------------");
+        }
 
     }
 }

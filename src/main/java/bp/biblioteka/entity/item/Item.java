@@ -7,6 +7,7 @@ import bp.biblioteka.state.item.AvailableState;
 import bp.biblioteka.state.item.ItemState;
 import bp.biblioteka.strategy.item.PenaltyStrategy;
 import bp.biblioteka.strategy.item.StandardPenalty;
+import bp.biblioteka.visitor.item.ItemVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +115,11 @@ public abstract class Item {
     public double calculatePenalty(int daysOverdue) {
         if(daysOverdue <= 0) return 0.0;
         return penaltyStrategy.calculatePenalty(daysOverdue);
+    }
+
+
+    public String accept(ItemVisitor visitor) {
+        return visitor.visitBook(this);
     }
 
 }
