@@ -2,6 +2,8 @@ package bp.biblioteka.template.item;
 
 import bp.biblioteka.entity.item.Item;
 
+//Tydzień 6, Wzorzec Template 3
+//proces dodawania nowych przedmiotów
 public abstract class ItemProcessingTemplate {
     public final void processNewItem(Item newItem) {
         registerInSystem(newItem);
@@ -17,3 +19,4 @@ public abstract class ItemProcessingTemplate {
         System.out.println("Przedmiot został pomyślnie dodany");
     }
 }
+//Koniec, Tydzień 6, Wzorzec Template 3

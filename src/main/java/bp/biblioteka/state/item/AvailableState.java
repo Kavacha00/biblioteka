@@ -21,3 +21,4 @@ public class AvailableState implements ItemState{
         return "Dostępny";
     }
 }
+//Koniec, Tydzień 6, Wzorzec State 3

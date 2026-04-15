@@ -6,3 +6,4 @@ public class StandardPenalty implements PenaltyStrategy {
         return daysOverdue * 2.0;
     }
 }
+//Koniec, Tydzień 6, Wzorzec Strategy 3

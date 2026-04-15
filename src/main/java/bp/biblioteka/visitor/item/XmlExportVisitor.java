@@ -23,3 +23,4 @@ public class XmlExportVisitor implements ItemVisitor {
     }
 
 }
+//Koniec, Tydzień 6, Wzorzec Visitor 3

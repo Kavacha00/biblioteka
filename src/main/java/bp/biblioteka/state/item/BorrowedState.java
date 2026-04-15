@@ -24,3 +24,4 @@ public class BorrowedState implements ItemState {
         return "Wypożyczony";
     }
 }
+//Koniec, Tydzień 6, Wzorzec State 3
