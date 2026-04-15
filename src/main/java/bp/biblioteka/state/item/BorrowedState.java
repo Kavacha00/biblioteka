@@ -13,6 +13,9 @@ public class BorrowedState implements ItemState {
     @Override
     public boolean returnItem(Item item){
         item.setItemState(new AvailableState());
+
+        item.notifyObservers("dostępny");
+
         return true;
     }
 

@@ -2,8 +2,14 @@ package bp.biblioteka.entity.item;
 
 import bp.biblioteka.bridge.item.ItemFormat;
 import bp.biblioteka.memento.item.ItemMemento;
+import bp.biblioteka.observer.item.ItemObserver;
+import bp.biblioteka.state.item.AvailableState;
 import bp.biblioteka.state.item.ItemState;
+import bp.biblioteka.strategy.item.PenaltyStrategy;
+import bp.biblioteka.strategy.item.StandardPenalty;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -61,13 +67,6 @@ public abstract class Item {
 //        this.isBorrowed = borrowed;
 //    }
 
-    private bp.biblioteka.state.item.ItemState itemState = new bp.biblioteka.state.item.AvailableState();
-    public bp.biblioteka.state.item.ItemState getItemState() {
-        return itemState;
-    }
-    public void setItemState(bp.biblioteka.state.item.ItemState itemState) {
-        this.itemState = itemState;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -80,4 +79,41 @@ public abstract class Item {
     public int hashCode() {
         return Objects.hash(id, title, author);
     }
+
+
+    private ItemState itemState = new AvailableState();
+    public ItemState getItemState() {
+        return itemState;
+    }
+    public void setItemState(ItemState itemState) {
+        this.itemState = itemState;
+    }
+
+
+    private List<ItemObserver> observers = new ArrayList<>();
+    public void addObserver(ItemObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(ItemObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers(String message) {
+        for (ItemObserver observer : observers) {
+            observer.update(this.getTitle(), message);
+        }
+        observers.clear();
+    }
+
+    private PenaltyStrategy penaltyStrategy = new StandardPenalty();
+    public void setPenaltyStrategy(PenaltyStrategy penaltyStrategy) {
+        this.penaltyStrategy = penaltyStrategy;
+    }
+
+    public double calculatePenalty(int daysOverdue) {
+        if(daysOverdue <= 0) return 0.0;
+        return penaltyStrategy.calculatePenalty(daysOverdue);
+    }
+
 }

@@ -19,6 +19,10 @@ import bp.biblioteka.mediator.LibraryMediator;
 import bp.biblioteka.mediator.LibraryMediatorImpl;
 import bp.biblioteka.memento.item.ItemHistory;
 import bp.biblioteka.memento.item.ItemMemento;
+import bp.biblioteka.strategy.item.HighPenalty;
+import bp.biblioteka.template.item.DigitalBookProcessor;
+import bp.biblioteka.template.item.ItemProcessingTemplate;
+import bp.biblioteka.template.item.PhysicalBookProcessor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
@@ -260,33 +264,82 @@ public class BibliotekaApplication {
 //            }
 //        }
 
+
+
+//        ItemFacade facade = new ItemFacade();
+//        LibraryMediator mediator = new LibraryMediatorImpl();
+//
+//        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//
+//        User jan = new Customer("Jan Kowalski", "", "", "");
+//        User anna = new Customer("Anna Nowak", "", "", "");
+//
+//        System.out.println("Stan początkowy: [" + book.getItemState().getStateName() + "]");
+//
+//        System.out.println("Akcja: Jan chce wypożyczyć książkę.");
+//        mediator.borrowItem(jan, book);
+//        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+//
+//        System.out.println("Akcja: Anna chce wypożyczyć książkę.");
+//        mediator.borrowItem(anna, book);
+//        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Jan zwraca książkę.");
+//        mediator.returnItem(jan, book);
+//        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+//        System.out.println("--------------------------------------------------");
+//
+//        System.out.println("Akcja: Anna chce zwrócić książkę.");
+//        mediator.returnItem(anna, book);
+//        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+
+
+//        ItemFacade facade = new ItemFacade();
+//        LibraryMediator mediator = new LibraryMediatorImpl();
+//
+//        Item book = facade.createPhysicalBook("Frank Herbert", "Diuna");
+//
+//        Customer jan = new Customer("Jan Kowalski", "", "", "");
+//        Customer anna = new Customer("Anna Nowak", "", "", "");
+//        Customer piotr = new Customer("Piotr Wiśniewski", "", "", "");
+//
+//        System.out.println("1. Jan wypożycza 'Diunę'.");
+//        mediator.borrowItem(jan, book);
+//
+//        System.out.println("\n2. Anna i Piotr przychodzą do biblioteki, ale książki nie ma.");
+//        System.out.println("Zapisują się na listę powiadomień.");
+//
+//        book.addObserver(anna);
+//        book.addObserver(piotr);
+//
+//        System.out.println("\n3. Janzwraca książkę do biblioteki!");
+//        mediator.returnItem(jan, book);
+
+
+//        ItemFacade facade = new ItemFacade();
+//        int days = 4;
+//
+//        Item standardBook = facade.createPhysicalBook("Henryk Sienkiewicz", "Potop");
+//        System.out.println("Zwykła książka - kara: " + standardBook.calculatePenalty(days) + " PLN");
+//
+//        Item bestseller = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+//        bestseller.setPenaltyStrategy(new HighPenalty());
+//        System.out.println("Bestseller - kara: " + bestseller.calculatePenalty(days) + " PLN");
+
+
+
         ItemFacade facade = new ItemFacade();
-        LibraryMediator mediator = new LibraryMediatorImpl();
 
-        Item book = facade.createPhysicalBook("Andrzej Sapkowski", "Wiedźmin");
+        Item papierowa = facade.createPhysicalBook("Frank Herbert", "Diuna");
+        Item cyfrowa = facade.createDigitalBook("J.R.R. Tolkien", "Hobbit (Audiobook)");
 
-        User jan = new Customer("Jan Kowalski", "", "", "");
-        User anna = new Customer("Anna Nowak", "", "", "");
+        ItemProcessingTemplate procesorFizyczny = new PhysicalBookProcessor();
+        ItemProcessingTemplate procesorCyfrowy = new DigitalBookProcessor();
 
-        System.out.println("Stan początkowy: [" + book.getItemState().getStateName() + "]");
+        procesorFizyczny.processNewItem(papierowa);
 
-        System.out.println("Akcja: Jan chce wypożyczyć książkę.");
-        mediator.borrowItem(jan, book);
-        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
-
-        System.out.println("Akcja: Anna chce wypożyczyć książkę.");
-        mediator.borrowItem(anna, book);
-        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
-        System.out.println("--------------------------------------------------");
-
-        System.out.println("Akcja: Jan zwraca książkę.");
-        mediator.returnItem(jan, book);
-        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
-        System.out.println("--------------------------------------------------");
-
-        System.out.println("Akcja: Anna chce zwrócić książkę.");
-        mediator.returnItem(anna, book);
-        System.out.println("Aktualny stan: [" + book.getItemState().getStateName() + "]");
+        procesorCyfrowy.processNewItem(cyfrowa);
 
     }
 }
