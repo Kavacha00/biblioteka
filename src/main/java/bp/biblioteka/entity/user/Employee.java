@@ -1,5 +1,7 @@
 package bp.biblioteka.entity.user;
 
+import bp.biblioteka.visitor.user.UserVisitor;
+
 import java.util.UUID;
 
 public class Employee extends User {
@@ -21,6 +23,11 @@ public class Employee extends User {
     public String logOut() {
         this.setLoggedIn(false);
         return "Employee logged out";
+    }
+
+    @Override
+    public String accept(UserVisitor visitor) {
+        return visitor.visit(this);
     }
 
 }
