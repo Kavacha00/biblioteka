@@ -7,7 +7,6 @@ import bp.biblioteka.composite.item.AuthorCollection;
 import bp.biblioteka.decorator.Item.BestsellerDecorator;
 import bp.biblioteka.entity.item.Item;
 import bp.biblioteka.factory.item.BookCreator;
-import bp.biblioteka.factory.item.CDCreator;
 import bp.biblioteka.flyweight.item.FormatFactory;
 
 //Tydzień 4, Wzorzec Facade 3
@@ -15,13 +14,11 @@ import bp.biblioteka.flyweight.item.FormatFactory;
 //aby tworzenie książek było prostsze
 public class ItemFacade {
     private final BookCreator bookCreator;
-    private final CDCreator cdCreator;
     private final ItemFormat physicalFormat;
     private final ItemFormat digitalFormat;
 
     public  ItemFacade() {
         this.bookCreator = BookCreator.getInstance();
-        this.cdCreator = CDCreator.getInstance();
         this.physicalFormat = new PhysicalFormat();
         this.digitalFormat = new DigitalFormat();
     }
@@ -43,16 +40,6 @@ public class ItemFacade {
 
     public AuthorCollection createAuthorCollection(String author){
         return new AuthorCollection(author);
-    }
-
-    public Item createPhysicalCD(String artist, String title){
-        ItemFormat itemFormat = FormatFactory.getItemFormat("physical");
-        return cdCreator.createItem(artist, title,  itemFormat);
-    }
-
-    public Item createDigitalCD(String artist, String title){
-        ItemFormat itemFormat = FormatFactory.getItemFormat("digital");
-        return cdCreator.createItem(artist, title,  itemFormat);
     }
 }
 //Koniec, Tydzień 4, Wzorzec Facade 3
