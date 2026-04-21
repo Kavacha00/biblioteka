@@ -4,6 +4,8 @@ import bp.biblioteka.bridge.item.ItemFormat;
 import bp.biblioteka.entity.item.CD;
 import bp.biblioteka.entity.item.Item;
 
+//Tydzień 7, zasada otwarte - zamnkięte na abstrakcji 3
+//stwodzenie plyty CD na fabryce
 public class CDCreator extends ItemCreator {
     private static CDCreator instance;
     private CDCreator() {super();}
@@ -13,7 +15,7 @@ public class CDCreator extends ItemCreator {
         return instance;
     }
     @Override
-    public Item createItem(String band, String title, ItemFormat format) {
-        return new CD(band, title,  format);
+    public Item createItem(String artist, String title, ItemFormat format) {
+        return new CD(artist, title,  format);
     }
 }
