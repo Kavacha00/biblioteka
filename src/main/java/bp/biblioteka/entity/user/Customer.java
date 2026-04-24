@@ -5,6 +5,10 @@ import bp.biblioteka.visitor.user.UserVisitor;
 
 import java.util.UUID;
 
+// Tydzień 8, Zasada LSP 1
+// Implementacja klasy pochodnej Customer, która rozszerza funkcjonalność User o obserwowanie przedmiotów.
+// Zachowuje pełną wymienność z klasą bazową bez naruszania logiki biznesowej mechanizmu logowania.
+
 public class Customer extends User implements ItemObserver {
     public Customer(String name, String email, String login, String password) {
         super(name, email, login, password);
@@ -36,3 +40,5 @@ public class Customer extends User implements ItemObserver {
         System.out.println(itemName + ": " + message);
     }
 }
+
+// Koniec, Tydzień 8, Zasada LSP 1

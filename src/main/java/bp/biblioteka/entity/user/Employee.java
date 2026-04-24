@@ -4,6 +4,10 @@ import bp.biblioteka.visitor.user.UserVisitor;
 
 import java.util.UUID;
 
+// Tydzień 8, Zasada LSP 1
+// Implementacja klasy pochodnej Employee zachowująca kontrakt klasy bazowej User.
+// Klasa realizuje metody logowania zgodnie z oczekiwaniami systemu, umożliwiając bezpieczne podstawienie.
+
 public class Employee extends User {
     public Employee(String name, String email, String login, String password) {
         super(name, email, login, password);
@@ -31,3 +35,5 @@ public class Employee extends User {
     }
 
 }
+
+// Koniec, Tydzień 8, Zasada LSP 1
