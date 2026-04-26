@@ -1,6 +1,7 @@
 package bp.biblioteka.composite.user;
 
 import bp.biblioteka.entity.user.User;
+import bp.biblioteka.visitor.user.UserVisitor;
 
 import java.util.List;
 
@@ -39,5 +40,15 @@ public class UserGroup extends User {
 
         return msg;
     }
+
+    @Override
+    public String accept(UserVisitor visitor) {
+        StringBuilder result = new StringBuilder();
+        for (User user : users) {
+            result.append(user.accept(visitor)).append("\n");
+        }
+        return result.toString();
+    }
+
 }
 //Koniec, Tydzień 3, Wzorzec Composite 2

@@ -1,6 +1,7 @@
 package bp.biblioteka.decorator.user;
 
 import bp.biblioteka.entity.user.User;
+import bp.biblioteka.visitor.user.UserVisitor;
 
 
 //Tydzień 3, Wzorzec Decorator 2,
@@ -21,6 +22,11 @@ public class UserDecorator extends User {
     @Override
     public String logOut() {
         return user.logOut();
+    }
+
+    @Override
+    public String accept(UserVisitor visitor) {
+        return user.accept(visitor);
     }
 }
 //Koniec, Tydzień 3, Wzorzec Decorator 2

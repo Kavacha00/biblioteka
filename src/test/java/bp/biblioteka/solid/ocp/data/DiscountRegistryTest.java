@@ -24,7 +24,7 @@ public class DiscountRegistryTest {
         assertEquals(80.0, result);
     }
 
-    @org.junit.Test
+    @Test
     void shouldApplyStudentDiscountCorrectly() {
         double result = registry.applyDiscount("STUDENT", 100);
 
