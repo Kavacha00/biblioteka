@@ -1,5 +1,9 @@
 package bp.biblioteka.entity.store;
 
+// Tydzień 8, Zasada LSP 3
+// Klasa pochodna implementuje procesowanie zamówień
+// bez łamania zachowań i typów zwracanych oczekiwanych przez klasę bazową.
+
 public class OnlineStore extends Store {
 
     public OnlineStore(String name, String email, String address, String phoneNumber) {
@@ -15,3 +19,5 @@ public class OnlineStore extends Store {
         return result;
     }
 }
+
+// Koniec, Tydzień 8, Zasada LSP 3

@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+// Tydzień 8, Zasada LSP 3
+// Klasa Store definiuje nadrzędny kontrakt (processOrder()),
+// który musi być respektowany przez wszystkie podklasy, by zagwarantować pełną wymienność obiektów.
+
 @Getter
 public abstract class Store implements Cloneable {
     protected UUID id;
@@ -62,3 +66,4 @@ public abstract class Store implements Cloneable {
 
     public abstract String processOrder();
 }
+// Koniec, Tydzień 8, Zasada LSP 3

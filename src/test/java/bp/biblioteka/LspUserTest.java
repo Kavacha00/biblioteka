@@ -6,7 +6,7 @@ import bp.biblioteka.entity.user.User;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LSPUserTest {
+public class LspUserTest {
 
     private void verifyUserLifecycle(User user) {
         assertFalse(user.isLoggedIn(), "Użytkownik nie powinien być zalogowany na starcie.");

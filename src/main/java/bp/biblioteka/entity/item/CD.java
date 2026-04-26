@@ -2,6 +2,11 @@ package bp.biblioteka.entity.item;
 
 import bp.biblioteka.bridge.item.ItemFormat;
 
+// Tydzień 8, Zasada LSP 2
+// Klasa CD bezbłędnie wypełnia kontrakt
+// klasy bazowej Item. Zapewnia poprawną implementację describe() i korzysta
+// ze standardowego zachowania getInternalDetails() bez psucia logiki wywołań.
+
 //Tydzień 7, zasada otwarte - zamnkięte na abstrakcji 2
 //dodanie nowego przedmiotu jakim jest płyta CD
 public class CD extends Item {
@@ -15,3 +20,5 @@ public class CD extends Item {
     }
 }
 //Koniec, Tydzień 7, zasada otwarte - zamnkięte na abstrakcji 2
+
+// Koniec, Tydzień 8, Zasada LSP 2

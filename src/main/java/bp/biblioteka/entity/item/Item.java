@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+// Tydzień 8, Zasada LSP 2
+// Klasa Item stanowi stabilną klasę bazową, definiującą kontrakt (metody describe() i getInternalDetails()),
+// którego wszystkie klasy pochodne muszą przestrzegać, by można było ich używać w 100% zamiennie.
+
 public abstract class Item {
     protected UUID id;
     private String title;
@@ -123,3 +127,4 @@ public abstract class Item {
     }
 
 }
+// Koniec, Tydzień 8, Zasada LSP 2

@@ -1,5 +1,9 @@
 package bp.biblioteka.entity.store;
 
+// Tydzień 8, Zasada LSP 3
+// Klasa pochodna implementuje processOrder()
+// wspierając wbudowany system notyfikacji i w 100% pasując do interfejsu klasy bazowej.
+
 public class PhysicalStore extends Store {
 
     public PhysicalStore(String name, String email, String address, String phoneNumber) {
@@ -15,3 +19,5 @@ public class PhysicalStore extends Store {
         return result;
     }
 }
+
+// Koniec, Tydzień 8, Zasada LSP 3

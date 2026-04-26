@@ -4,6 +4,10 @@ import bp.biblioteka.bridge.item.ItemFormat;
 
 import java.util.UUID;
 
+// Tydzień 8, Zasada LSP 2
+// Implementuje metodę describe() i nadpisuje getInternalDetails() w sposób niewprowadzający
+// niespodziewanych błędów (np. nie rzuca wyjatków UnsupportedOperationException).
+
 public class Book extends Item implements Cloneable {
     public Book(String author, String title, ItemFormat format) {
 
@@ -35,3 +39,5 @@ public class Book extends Item implements Cloneable {
 
 
 }
+
+// Koniec, Tydzień 8, Zasada LSP 2
