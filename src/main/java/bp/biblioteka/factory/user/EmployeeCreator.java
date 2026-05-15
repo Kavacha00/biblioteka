@@ -32,3 +32,4 @@ public final class EmployeeCreator extends UserCreator{
         return new Employee(name, email, login, password);
     }
 }
+//Koniec, Tydzień 2, Wzorzec Factory i Singleton 2
