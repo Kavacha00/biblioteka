@@ -60,14 +60,6 @@ public abstract class Item {
         this.author = memento.getAuthor();
     }
 
-//    public boolean isBorrowed = false;
-//    public boolean isBorrowed() {
-//        return isBorrowed;
-//    }
-//    public void setBorrowed(boolean borrowed) {
-//        this.isBorrowed = borrowed;
-//    }
-
 
     @Override
     public boolean equals(Object o) {
