@@ -3,7 +3,7 @@ package bp.biblioteka.decorator.Item;
 import bp.biblioteka.entity.item.Item;
 
 //Tydzień 3, Wzorzec Decorator
-//Możliwość dynamicznego dodania do itemu atrybutu "bestseller
+//Możliwość dynamicznego dodania do itemu atrybutu "bestseller"
 public class ItemDecorator extends Item {
     protected Item item;
 

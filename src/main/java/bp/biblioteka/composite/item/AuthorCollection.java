@@ -19,7 +19,6 @@ public class AuthorCollection extends Item {
     public void addItem(Item item){
         if(item.getAuthor().equals(this.getAuthor()))
             items.add(item);
-        //else System.out.println("Błąd: zły autor");
     }
 
     public void removeItem(Item item){
