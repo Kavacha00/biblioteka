@@ -2,6 +2,8 @@ package bp.biblioteka.builder.user;
 
 import bp.biblioteka.entity.user.Employee;
 
+//Tydzień 2, Wzorzec Builder 2,
+// Builder umożliwia tworzenie obiektów krok po kroku
 public class EmployeeBuilder {
     private String name;
     private String email;
@@ -45,3 +47,5 @@ public class EmployeeBuilder {
         return new Employee(employeeName, employeeEmail, employeeLogin, employeePassword);
     }
 }
+}
+//Koniec, Tydzień 2, Wzorzec Builder 2
