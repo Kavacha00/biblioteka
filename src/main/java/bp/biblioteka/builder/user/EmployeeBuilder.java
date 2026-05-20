@@ -47,5 +47,4 @@ public class EmployeeBuilder {
         return new Employee(employeeName, employeeEmail, employeeLogin, employeePassword);
     }
 }
-}
 //Koniec, Tydzień 2, Wzorzec Builder 2

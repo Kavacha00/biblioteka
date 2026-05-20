@@ -8,3 +8,4 @@ public class UserAuditLogger implements UserObserver {
         System.out.println("[AUDIT] User '" + userLogin + "' triggered: " + event);
     }
 }
+//Koniec, Tydzień 6, Wzorzec Observer 2

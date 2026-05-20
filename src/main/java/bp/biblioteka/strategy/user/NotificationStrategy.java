@@ -6,3 +6,4 @@ public interface NotificationStrategy {
     String send(String recipient, String message);
     String getStrategyName();
 }
+// Koniec, Tydzień 6, Wzorzec Strategy 2

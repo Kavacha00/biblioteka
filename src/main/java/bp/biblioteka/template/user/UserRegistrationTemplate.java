@@ -5,7 +5,6 @@ import bp.biblioteka.entity.user.User;
 //Tydzień 6, Wzorzec Template 2
 //proces rejestracji użytkownika
 public abstract class UserRegistrationTemplate {
-
     public final User register(String name, String email, String login, String password) {
         validate(name, email, login, password);
         User user = createUser(name, email, login, password);
@@ -28,3 +27,4 @@ public abstract class UserRegistrationTemplate {
         System.out.println("Welcome, " + user.getName() + "! Your account has been created.");
     }
 }
+// Koniec, Tydzień 6, Wzorzec Template 2

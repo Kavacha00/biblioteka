@@ -4,6 +4,8 @@ import bp.biblioteka.adapter.user.OidcUserAdapter;
 import bp.biblioteka.entity.user.Customer;
 import bp.biblioteka.entity.user.Employee;
 
+//Tydzień 6, Wzorzec Visitor 2
+//Generuje raport uprawnień
 public class PermissionAuditVisitor implements UserVisitor {
     @Override
     public String visit(Customer customer) {
