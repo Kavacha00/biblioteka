@@ -3,7 +3,14 @@ package bp.biblioteka.factory.store;
 import bp.biblioteka.entity.store.PhysicalStore;
 import bp.biblioteka.entity.store.Store;
 
+
+
 public final class PhysicalStoreCreator extends StoreCreator {
+
+    // Tydzień 2, Wzorzec Singleton 1
+    // Wzorzec Singleton gwarantuje, że w całej aplikacji będzie istniała tylko jedna instancja tej klasy.
+    // Zastosowano tutaj mechanizm podwójnego zatwierdzenia (Double-Checked Locking) z operatorem volatile,
+    // co zapewnia bezpieczne działanie w środowisku wielowątkowym.
 
     private static volatile PhysicalStoreCreator instance;
 
@@ -23,6 +30,8 @@ public final class PhysicalStoreCreator extends StoreCreator {
             return instance;
         }
     }
+
+    // Koniec, Tydzień 2, Wzorzec Singleton 1
 
     @Override
     public Store createStore(String name, String email, String address, String phoneNumber) {

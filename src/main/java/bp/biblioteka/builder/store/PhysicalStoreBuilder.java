@@ -3,6 +3,11 @@ package bp.biblioteka.builder.store;
 
 import bp.biblioteka.entity.store.PhysicalStore;
 
+//Tydzień 2, Wzorzec Builder 1,
+// Wzorzec Builder (Budowniczy) pozwala na tworzenie skomplikowanych obiektów (PhysicalStore) krok po kroku.
+// Umożliwia konfigurację obiektu za pomocą płynnego interfejsu (fluent interface), eliminując potrzebę
+// tworzenia wielu tzw. "teleskopowych konstruktorów" z różnymi kombinacjami parametrów.
+
 public class PhysicalStoreBuilder {
     private String name;
     private String email;
@@ -46,3 +51,5 @@ public class PhysicalStoreBuilder {
         return new PhysicalStore(storeName, storeEmail, storeAddress, storePhoneNumber);
     }
 }
+
+//Koniec, Tydzień 2, Wzorzec Builder 1
