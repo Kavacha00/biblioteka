@@ -22,6 +22,10 @@ import java.util.UUID;
 // Tydzień 8, Zasada LSP 1
 // Zasada Podstawienia Liskov (LSP). Klasa bazowa definiująca kontrakt użytkownika,
 // który gwarantuje, że każda klasa pochodna będzie działać poprawnie w kontekście logowania i powiadomień.
+
+//Tydzień 2, Wzorzec Prototype 2
+// Interfejs cloneable udpostępnia metodę tworzącą kopię głęboką obiektu
+
 @Getter
 @Setter
 public abstract class User implements Cloneable, UserSubject, UserVisitable {
@@ -128,4 +132,5 @@ public abstract class User implements Cloneable, UserSubject, UserVisitable {
 
 
 }
+//Koniec, Tydzień 2, Wzorzec Prototype 2
 // Koniec, Tydzień 8, Zasada LSP 1

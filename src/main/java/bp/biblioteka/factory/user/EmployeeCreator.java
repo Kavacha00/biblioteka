@@ -3,6 +3,9 @@ package bp.biblioteka.factory.user;
 import bp.biblioteka.entity.user.Employee;
 import bp.biblioteka.entity.user.User;
 
+//Tydzień 2, Wzorzec Factory i Singleton(thread safe) 2,
+// Singleton sprawia, że jedynie jedna instancja klasy może istnieć w systemie
+// Factory zwraca obiekt klasy zgodnie z wymaganiami
 public final class EmployeeCreator extends UserCreator{
     private static volatile EmployeeCreator instance;
 
@@ -29,3 +32,4 @@ public final class EmployeeCreator extends UserCreator{
         return new Employee(name, email, login, password);
     }
 }
+//Koniec, Tydzień 2, Wzorzec Factory i Singleton 2

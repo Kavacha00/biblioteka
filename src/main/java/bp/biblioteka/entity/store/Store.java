@@ -53,6 +53,12 @@ public abstract class Store implements Cloneable {
     }
     // Koniec, Tydzień 6, Wzorzec Observer 1
 
+    // Tydzień 2, Wzorzec Prototype 1
+    // Wzorzec Prototype pozwala na tworzenie nowych obiektów poprzez kopiowanie
+    // istniejących instancji (prototypów) zamiast tworzenia ich od zera.
+    // Przesłonięta metoda clone() pozwala na bezpieczne sklonowanie obiektu Store,
+    // inicjalizując nową (pustą) listę obserwatorów, aby klon nie dzielił jej z oryginałem.
+
     @Override
     public Store clone() {
         try {
@@ -63,6 +69,8 @@ public abstract class Store implements Cloneable {
             throw new AssertionError();
         }
     }
+
+    // Koniec, Tydzień 2, Wzorzec Prototype 1
 
     public abstract String processOrder();
 }

@@ -8,3 +8,4 @@ public interface UserState {
     String suspend();
     String getStateName();
 }
+//Koniec, Tydzień 6, Wzorzec State 2
