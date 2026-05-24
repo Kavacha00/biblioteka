@@ -49,26 +49,23 @@ public class FunctionalInterfaceService {
     }
 
     public void demonstratePricing(double basePrice, double discountRate) {
-        System.out.println("=== ItemPricer ===");
-        System.out.printf("  Cena bazowa:        %.2f zł%n", basePrice);
-        System.out.printf("  Rabat standardowy:  %.2f zł%n",
+        System.out.printf("Cena bazowa:        %.2f zł%n", basePrice);
+        System.out.printf("Rabat standardowy:  %.2f zł%n",
                 calculateStandardDiscount(basePrice, discountRate));
-        System.out.printf("  Rabat świąteczny:   %.2f zł%n",
+        System.out.printf("Rabat świąteczny:   %.2f zł%n",
                 calculateHolidayDiscount(basePrice, discountRate));
     }
 
     public void demonstrateDescribing(List<Item> items) {
-        System.out.println("\n=== ItemDescriber ===");
         items.forEach(item -> {
-            System.out.println("  katalog : " + describeCatalog(item));
-            System.out.println("  skrócony: " + describeShort(item));
+            System.out.println("katalog : " + describeCatalog(item));
+            System.out.println("skrócony: " + describeShort(item));
         });
     }
 
     public void demonstrateNotifying(List<User> users, String message) {
-        System.out.println("\n=== UserNotifier ===");
         users.forEach(user -> {
-            System.out.println("  email: " + notifyByEmail(user, message));
+            System.out.println("email: " + notifyByEmail(user, message));
             notifyByLog(user, message);
         });
     }
