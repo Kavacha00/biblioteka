@@ -41,15 +41,13 @@ public class PredicateFunctionService {
     }
 
     public void printPredicateResults(List<Item> items) {
-        System.out.println("=== Predicate<Item> ===");
-
-        System.out.println("  isBook.and(isDigital) – cyfrowe książki:");
+        System.out.println("isBook.and(isDigital) – cyfrowe książki:");
         getDigitalBooks(items)
                 .stream()
                 .map(Item::describe)
                 .forEach(d -> System.out.println("    " + d));
 
-        System.out.println("  isBook.negate() – przedmioty inne niż książka:");
+        System.out.println("isBook.negate() – przedmioty inne niż książka:");
         getNonBooks(items)
                 .stream()
                 .map(Item::describe)
@@ -69,14 +67,12 @@ public class PredicateFunctionService {
     }
 
     public void printFunctionResults(List<Item> items) {
-        System.out.println("\n=== Function<Item, String> ===");
-
         List<Item> books = items.stream().filter(isBook).collect(Collectors.toList());
 
-        System.out.println("  toReportLine (książki):");
+        System.out.println("toReportLine (książki):");
         toReportLines(books).forEach(r -> System.out.println("    " + r));
 
-        System.out.println("  toReportLine.andThen(toUpperCase):");
+        System.out.println("toReportLine.andThen(toUpperCase):");
         toUpperReportLines(books).forEach(r -> System.out.println("    " + r));
     }
 }
