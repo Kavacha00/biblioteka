@@ -22,7 +22,6 @@ public class StreamProcessingService {
     }
 
     public void printSortedItems(List<Item> items) {
-        System.out.println("=== Kolekcja 1: Item (posortowane tytuły) ===");
         getSortedTitlesUpperCase(items).forEach(t -> System.out.println("  " + t));
     }
 
@@ -34,7 +33,6 @@ public class StreamProcessingService {
     }
 
     public void printLoggedInEmails(List<User> users) {
-        System.out.println("\n=== Kolekcja 2: User (e-maile zalogowanych) ===");
         List<String> emails = getLoggedInEmails(users);
         if (emails.isEmpty()) {
             System.out.println("  Brak zalogowanych użytkowników.");
@@ -51,7 +49,6 @@ public class StreamProcessingService {
     }
 
     public void printOrderStatuses(List<Order> orders) {
-        System.out.println("\n=== Kolekcja 3: Order (statusy) ===");
         orders.stream()
                 .map(Order::printStatus)
                 .forEach(s -> System.out.println("  " + s));
