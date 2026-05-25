@@ -5,7 +5,7 @@ import bp.biblioteka.entity.item.CD;
 import bp.biblioteka.entity.item.Item;
 
 //Tydzień 7, zasada otwarte - zamnkięte na abstrakcji 3
-//stwodzenie plyty CD na fabryce
+//stworzenie plyty CD na fabryce
 public class CDCreator extends ItemCreator {
     private static CDCreator instance;
     private CDCreator() {super();}

@@ -4,6 +4,9 @@ import bp.biblioteka.bridge.item.ItemFormat;
 import bp.biblioteka.entity.item.Book;
 import bp.biblioteka.entity.item.Item;
 
+//Tydzień 2, Wzorzec Factory i Singleton 3
+//Klasa tworząca obiekty,
+//zapewnia istnienie tylko jednej instancji klasy
 public final class BookCreator extends ItemCreator {
     private static volatile  BookCreator instance;
     private BookCreator() {
@@ -25,3 +28,4 @@ public final class BookCreator extends ItemCreator {
         return new Book(author, title,  format);
     }
 }
+//Koniec, Tydzień 2, Wzorzec Factory i Singleton 3

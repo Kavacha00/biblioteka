@@ -3,6 +3,8 @@ package bp.biblioteka.builder.item;
 import bp.biblioteka.bridge.item.ItemFormat;
 import bp.biblioteka.entity.item.Book;
 
+//Tydzień 2, Wzorzec Builder 3,
+//klasa tworząca obiekty
 public class BookBuilder {
     private String author;
     private String title;
@@ -37,3 +39,4 @@ public class BookBuilder {
         return new Book(bookAuthor, bookTitle,  bookFormat);
     }
 }
+//Koniec, Tydzień 2, Wzorzec Builder 3,
