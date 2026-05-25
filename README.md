@@ -42,6 +42,8 @@ Opis: Dzięki wykorzystaniu wzorca Thread Safe Singleton, w systemie może istni
 
 Plik: `BookCreator`
 
+Opis: Zapewnia istnienie tylko jednej instancji klasy
+
 ---
 
 ### Builder
@@ -62,6 +64,8 @@ Opis: Dzięki wykorzystaniu wzorca Builder możemy tworzyć obiekt klasy `Employ
 
 Plik: `BookBuilder`
 
+Opis: Klasa tworząca obiekty
+
 ---
 
 ### Prototype
@@ -81,6 +85,8 @@ Opis: Klasa implementuje interfejs `Cloneable`. Metoda `clone` pozwala stworzyć
 **Adam Krawczyk**
 
 Plik: `Item`
+
+Opis: Klasa tworzy kopie obiektów implementując interfejs Cloneable
 
 ---
 
